@@ -18,6 +18,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.appnauan.Database;
+import com.example.appnauan.MainActivity;
 import com.example.appnauan.MonAn;
 import com.example.appnauan.MonAnAdapter;
 import com.example.appnauan.R;
@@ -33,7 +34,7 @@ public class DsMonAnFragment extends Fragment {
     private MonAnAdapter adapter;
     private ArrayList<MonAn> listMonAn;
     GridView gvMonAn;
-    public Database database;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -42,29 +43,30 @@ public class DsMonAnFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_dsmonan, container, false);
 
         gvMonAn=(GridView) root.findViewById(R.id.gridviewHinhAnh);
-        listMonAn=new ArrayList<>();
 
-        //MonAn monan=new MonAn("1","Phở","Thịt trứng","N",1);
-        //listMonAn.add(monan);
-        database=new Database(getActivity(),"QuanLyMonAn.sql",null,1);
-        database.QueryData("CREATE TABLE IF NOT EXISTS MonAn(MaMonAn INTEGER PRIMARY KEY AUTOINCREMENT,TenMonAn VARCHAR(200), DsNguyenLieu VARCHAR(200), CongThuc VARCHAR(200), HinhAnh BLOB)");
+        setGridView();
         //getData
-        Cursor cursor=database.GetData("SELECT * FROM MonAn");
+        return root;
+    }
+    public void setGridView()
+    {
+        Cursor cursor= MainActivity.database.GetData("SELECT * FROM MonAn");
+        listMonAn=new ArrayList<>();
         while(cursor.moveToNext())
         {
             listMonAn.add(new MonAn(
-                    cursor.getInt(0),
-                    cursor.getString(1),
-                    cursor.getString(2),
-                    cursor.getString(3),
-                    cursor.getBlob(4)
+                            cursor.getInt(0),
+                            cursor.getString(1),
+                            cursor.getString(2),
+                            cursor.getString(3),
+                            cursor.getBlob(4)
                     )
             );
         }
-//        adapter.notifyDataSetChanged();
+        //adapter.notifyDataSetChanged();
         adapter=new MonAnAdapter(getActivity(),R.layout.item_monan,listMonAn);
         gvMonAn.setAdapter(adapter);
-        return root;
+
     }
 
 }

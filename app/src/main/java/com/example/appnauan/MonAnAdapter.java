@@ -1,6 +1,8 @@
 package com.example.appnauan;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,9 +62,11 @@ public class MonAnAdapter extends BaseAdapter {
             holder=(ViewHolder) view.getTag();
         }
         MonAn monan=ListMonAn.get(i);
-        //holder.imgHinh.setImageResource(monan.getHinhAnh());
+        byte[]hinhAnh=monan.getHinhAnh();
+        Bitmap bitmap= BitmapFactory.decodeByteArray(hinhAnh,0,hinhAnh.length);
+        holder.imgHinh.setImageBitmap(bitmap);
         holder.tvName.setText(monan.getTenMonAn());
-       // holder.tvName.setSelected(true);
+       holder.tvName.setSelected(true);
 
         return view;
     }

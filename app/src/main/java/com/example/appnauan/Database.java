@@ -19,7 +19,7 @@ public class Database extends SQLiteOpenHelper {
 
     }
 
-    public void Insert_DoVat(String ten, String nguyenlieu,String congthuc, byte[]hinhanh)
+    public void Insert_MonAn(String ten, String nguyenlieu,String congthuc, byte[]hinhanh)
     {
         SQLiteDatabase database=getWritableDatabase();
         String sql="INSERT INTO MonAn VALUES(null,?,?,?,?)";

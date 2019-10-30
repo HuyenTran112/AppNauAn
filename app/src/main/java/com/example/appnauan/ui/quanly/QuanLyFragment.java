@@ -12,6 +12,7 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -25,7 +26,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.appnauan.MainActivity;
 import com.example.appnauan.R;
+import com.example.appnauan.ui.dsmonan.DsMonAnFragment;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -39,6 +42,7 @@ public class QuanLyFragment extends Fragment {
     EditText edtTenMonAn, edtDSNguyenLieu, edtCongThuc;
     ImageView imgHinhAnh;
     ImageButton ibtnCamera, ibtnFolder;
+    Button btnThem, btnHuy;
     public View view;
     final int REQUEST_CODE_CAMERA=123;
     final int REQUEST_CODE_FOLDER=456;
@@ -80,7 +84,43 @@ public class QuanLyFragment extends Fragment {
             }
         });
 
-
+        btnThem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String TenMonAn=edtTenMonAn.getText().toString().trim();
+                String DsNguyenLieu=edtDSNguyenLieu.getText().toString().trim();
+                String CongThuc=edtCongThuc.getText().toString().trim();
+                BitmapDrawable bitmapDrawable= (BitmapDrawable) imgHinhAnh.getDrawable();
+                Bitmap bitmap=bitmapDrawable.getBitmap();
+                ByteArrayOutputStream byteArray=new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG,100,byteArray);
+                //chuyển về mảng byte[]
+                byte[] hinhAnh=byteArray.toByteArray();
+                MainActivity.database.Insert_MonAn(
+                        TenMonAn,
+                        DsNguyenLieu,
+                        CongThuc,
+                        hinhAnh
+                );
+                Toast.makeText(getActivity(),"Đã thêm",Toast.LENGTH_SHORT).show();
+                edtTenMonAn.setText("");
+                edtDSNguyenLieu.setText("");
+                edtCongThuc.setText("");
+                imgHinhAnh.setImageResource(R.drawable.noimage);
+                DsMonAnFragment dsMonAnFragment=new DsMonAnFragment();
+                dsMonAnFragment.setGridView();
+                //Toast.makeText(getActivity(),TenMonAn+" "+DsNguyenLieu+" "+CongThuc+" "+hinhAnh,Toast.LENGTH_SHORT).show();
+            }
+        });
+        btnHuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                edtTenMonAn.setText("");
+                edtDSNguyenLieu.setText("");
+                edtCongThuc.setText("");
+                imgHinhAnh.setImageResource(R.drawable.noimage);
+            }
+        });
         return root;
     }
 
@@ -91,6 +131,8 @@ public class QuanLyFragment extends Fragment {
         ibtnCamera=(ImageButton) view.findViewById(R.id.imageButtonCamera);
         ibtnFolder=(ImageButton) view.findViewById(R.id.imageButtonOpenFolder);
         imgHinhAnh=(ImageView) view.findViewById(R.id.imageViewHinh);
+        btnThem=(Button) view.findViewById(R.id.buttonAdd);
+        btnHuy=(Button) view.findViewById(R.id.buttonHuy);
     }
 
     @Override

@@ -23,6 +23,7 @@ import android.view.Menu;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
+    public static Database database;
 
     private AppBarConfiguration mAppBarConfiguration;
     @Override
@@ -31,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
          setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        database=new Database(this,"QuanLy.sql",null,1);
+        database.QueryData("CREATE TABLE IF NOT EXISTS MonAn(Id INTEGER PRIMARY KEY AUTOINCREMENT,TenMonAn VARCHAR(200), DsNguyenLieu VARCHAR(200),CongThuc VARCHAR(200),HinhAnh BLOB)");
+
 //        FloatingActionButton fab = findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override

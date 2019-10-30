@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="tv_password" type="id" />
+    <item name="et_username" type="id" />
+    <item name="tvSignup" type="id" />
+    <item name="tv_username" type="id" />
+    <item name="tv_image" type="id" />
+    <item name="imageButtonCamera" type="id" />
+    <item name="btn_sign_in_facebook" type="id" />
+    <item name="btn_sign_up" type="id" />
+</resources>

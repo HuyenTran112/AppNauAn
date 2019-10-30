@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_dsmonan">
+
+    <fragment
+        android:id="@+id/nav_dsmonan"
+        android:name="com.example.appnauan.ui.dsmonan.DsMonAnFragment"
+        android:label="@string/menu_dsmonan"
+        tools:layout="@layout/fragment_dsmonan" />
+
+    <fragment
+        android:id="@+id/nav_monanyeuthich"
+        android:name="com.example.appnauan.ui.monanyeuthich.MonAnYeuThichFragment"
+        android:label="@string/menu_monanyeuthich"
+        tools:layout="@layout/fragment_monanyeuthich" />
+
+    <fragment
+        android:id="@+id/nav_monancuatoi"
+        android:name="com.example.appnauan.ui.monancuatoi.MonAnCuaToiFragment"
+        android:label="@string/menu_monancuatoi"
+        tools:layout="@layout/fragment_monancuatoi" />
+
+    <fragment
+        android:id="@+id/nav_dangnhap"
+        android:name="com.example.appnauan.ui.dangnhap.DangNhapFragment"
+        android:label="@string/menu_dangnhap" />
+
+    <fragment
+        android:id="@+id/nav_quanly"
+        android:name="com.example.appnauan.ui.quanly.QuanLyFragment"
+        android:label="@string/menu_quanly"
+        tools:layout="@layout/fragment_quanly" />
+
+    <fragment
+        android:id="@+id/nav_send"
+        android:name="com.example.appnauan.ui.send.SendFragment"
+        android:label="@string/menu_dangnhap"
+        tools:layout="@layout/fragment_send" />
+</navigation>

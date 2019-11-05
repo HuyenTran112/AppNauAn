@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="15dp"
+
     android:background="@drawable/background1"
     tools:context=".MainActivity">
 <ScrollView
@@ -37,9 +39,9 @@
         android:id="@+id/editTextTenMonAn"
         android:layout_marginLeft="10dp"
         android:hint="Nhập tên món ăn"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+
         android:layout_marginTop="36dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -50,12 +52,11 @@
         android:id="@+id/editTextDsNguyenLieu"
         android:layout_marginLeft="10dp"
         android:hint="Nhập nguyên liệu"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="36dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textMultiLine"
         android:text=""
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTenMonAn" />
@@ -63,12 +64,11 @@
         android:id="@+id/editTextCongThuc"
         android:layout_marginLeft="10dp"
         android:hint="Nhập công thức"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="36dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textMultiLine"
         android:text=""
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDsNguyenLieu" />
@@ -110,7 +110,6 @@
         app:layout_constraintLeft_toRightOf="@id/imageButtonCamera"
         app:layout_constraintTop_toBottomOf="@+id/editTextCongThuc"
         app:srcCompat="@drawable/openfolder" />
-
     <Button
         android:id="@+id/buttonAdd"
         android:layout_width="wrap_content"

@@ -107,8 +107,8 @@ public class QuanLyFragment extends Fragment {
                 edtDSNguyenLieu.setText("");
                 edtCongThuc.setText("");
                 imgHinhAnh.setImageResource(R.drawable.noimage);
-                DsMonAnFragment dsMonAnFragment=new DsMonAnFragment();
-                dsMonAnFragment.setGridView();
+//                DsMonAnFragment dsMonAnFragment=new DsMonAnFragment();
+//                dsMonAnFragment.setGridView();
                 //Toast.makeText(getActivity(),TenMonAn+" "+DsNguyenLieu+" "+CongThuc+" "+hinhAnh,Toast.LENGTH_SHORT).show();
             }
         });

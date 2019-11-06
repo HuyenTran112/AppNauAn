@@ -32,7 +32,7 @@
         android:inputType="textPassword"
         android:textColor="#1E39E9"
         app:layout_constraintStart_toEndOf="@+id/tv_password"
-        app:layout_constraintTop_toBottomOf="@+id/et_username" />
+        app:layout_constraintTop_toBottomOf="@+id/et_email" />
 
     <TextView
         android:id="@+id/tv_username"
@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvSignup" />
 
     <EditText
-        android:id="@+id/et_username"
+        android:id="@+id/et_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"

@@ -7,11 +7,18 @@
     android:background="@drawable/background1"
     tools:context=".MainActivity">
 
+    <com.daimajia.slider.library.SliderLayout
+        android:id="@+id/slider"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"/>
+
     <GridView
         android:verticalSpacing="10dp"
         android:numColumns="2"
         android:id="@+id/gridviewHinhAnh"
+        android:layout_below="@+id/slider"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         />
 </RelativeLayout>

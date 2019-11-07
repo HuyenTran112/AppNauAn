@@ -33,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         database=new Database(this,"QuanLy.sql",null,1);
+        database.QueryData("DROP TABLE User");
         database.QueryData("CREATE TABLE IF NOT EXISTS MonAn(Id INTEGER PRIMARY KEY AUTOINCREMENT,TenMonAn VARCHAR(200), DsNguyenLieu VARCHAR(200),CongThuc VARCHAR(200),HinhAnh BLOB)");
+        database.QueryData("CREATE TABLE IF NOT EXISTS User(Id INTEGER PRIMARY KEY AUTOINCREMENT,TenHienThi VARCHAR(200),Mail VARCHAR(200), MatKhau VARCHAR(200),LoaiUser VARCHAR(200),HinhAnh BLOB)");
 
 //        FloatingActionButton fab = findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {

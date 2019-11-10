@@ -73,41 +73,16 @@
         app:layout_constraintTop_toTopOf="@+id/et_password" />
 
     <ImageView
-        android:id="@+id/imageViewHinh"
+        android:id="@+id/imageViewHinhUser"
         android:layout_width="244dp"
         android:layout_height="142dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="116dp"
         android:background="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonCamera"
+        app:layout_constraintTop_toBottomOf="@+id/et_tenhienthi"
         app:srcCompat="@drawable/avatar" />
-
-    <ImageButton
-        android:id="@+id/imageButtonOpenFolder"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="15dp"
-        android:scaleType="fitXY"
-        android:background="@null"
-        app:layout_constraintLeft_toRightOf="@id/imageButtonCamera"
-        app:layout_constraintTop_toBottomOf="@+id/et_tenhienthi"
-        app:srcCompat="@drawable/openfolder" />
-
-    <ImageButton
-        android:id="@+id/imageButtonCamera"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="28dp"
-        android:background="@null"
-        android:scaleType="fitXY"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_tenhienthi"
-        app:srcCompat="@drawable/camera1" />
 
     <Button
         android:layout_width="match_parent"

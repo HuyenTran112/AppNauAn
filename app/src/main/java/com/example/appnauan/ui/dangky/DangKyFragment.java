@@ -37,10 +37,10 @@ public class DangKyFragment extends Fragment {
     EditText edtPassWord;
     EditText edtTenHienThi;
     ImageView imgHinhAnh;
-    ImageButton ibtnCamera, ibtnFolder;
     public View view;
     final int REQUEST_CODE_CAMERA=123;
     final int REQUEST_CODE_FOLDER=456;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -49,22 +49,7 @@ public class DangKyFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_dangky, container, false);
         view=root;
         AnhXa();
-        ibtnCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent,REQUEST_CODE_CAMERA);
-
-//               ActivityCompat.requestPermissions(
-//                        getActivity(),
-//                        new String[]{Manifest.permission.CAMERA},
-//                        REQUEST_CODE_CAMERA
-//                );
-            }
-
-        });
-
-        ibtnFolder.setOnClickListener(new View.OnClickListener() {
+        imgHinhAnh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(Intent.ACTION_PICK);
@@ -78,6 +63,7 @@ public class DangKyFragment extends Fragment {
 
             }
         });
+
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,12 +103,10 @@ public class DangKyFragment extends Fragment {
     public void AnhXa()
     {
         btnSignUp=(Button) view.findViewById(R.id.btn_sign_up);
-        ibtnCamera=(ImageButton)view.findViewById(R.id.imageButtonCamera);
-        ibtnFolder=(ImageButton)view.findViewById(R.id.imageButtonOpenFolder);
         edtEmail=(EditText)view.findViewById(R.id.et_email);
         edtPassWord=(EditText)view.findViewById(R.id.et_password);
         edtTenHienThi=(EditText)view.findViewById(R.id.et_tenhienthi);
-        imgHinhAnh=(ImageView) view.findViewById(R.id.imageViewHinh);
+        imgHinhAnh=(ImageView) view.findViewById(R.id.imageViewHinhUser);
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

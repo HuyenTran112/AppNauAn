@@ -34,28 +34,7 @@ public class MonAnYeuThichFragment extends Fragment {
                 ViewModelProviders.of(this).get(MonAnYeuThichViewModel.class);
         View root = inflater.inflate(R.layout.fragment_monanyeuthich, container, false);
         gvMonAnYeuThich=(GridView) root.findViewById(R.id.gridviewMonAnYeuThich);
-        setGridView();
         return root;
-    }
-    public void setGridView()
-    {
-        Cursor cursor= MainActivity.database.GetData("SELECT * FROM MonAn");
-        listMonAn=new ArrayList<>();
-        while(cursor.moveToNext())
-        {
-            listMonAn.add(new MonAn(
-                            cursor.getInt(0),
-                            cursor.getString(1),
-                            cursor.getString(2),
-                            cursor.getString(3),
-                            cursor.getBlob(4)
-                    )
-            );
-        }
-        //adapter.notifyDataSetChanged();
-        adapter=new MonAnAdapter(getActivity(),R.layout.item_monan,listMonAn);
-        gvMonAnYeuThich.setAdapter(adapter);
-
     }
 
 }

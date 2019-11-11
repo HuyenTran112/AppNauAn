@@ -53,10 +53,9 @@ public class DsMonAnFragment extends Fragment
 
     private DsMonAnViewModel homeViewModel;
     private MonAnAdapter adapter;
-    private ArrayList<MonAn> listMonAn;
     GridView gvMonAn;
-    ArrayList<MonAn> arrayListMonAn;
-
+    ArrayList<MonAn> arrayListMonAn=new ArrayList<>();;
+    String urlGetMonAn="http://10.80.255.137:8080/dbAppNauAn/getMonAn.php";
     SliderLayout sliderLayout ;
     HashMap<String, Integer> HashMapForLocalRes ;
 
@@ -67,9 +66,9 @@ public class DsMonAnFragment extends Fragment
         View root = inflater.inflate(R.layout.fragment_dsmonan, container, false);
 
         gvMonAn=(GridView) root.findViewById(R.id.gridviewHinhAnh);
-
-        setGridView();
-
+        adapter=new MonAnAdapter(getActivity(),R.layout.item_monan,arrayListMonAn);
+        gvMonAn.setAdapter(adapter);
+        GetMonAn(urlGetMonAn);
         sliderLayout = (SliderLayout)root.findViewById(R.id.slider);
         AddImageUrlFormLocalRes();
 
@@ -98,26 +97,6 @@ public class DsMonAnFragment extends Fragment
 
         //getData
         return root;
-    }
-    public void setGridView()
-    {
-        Cursor cursor= MainActivity.database.GetData("SELECT * FROM MonAn");
-        listMonAn=new ArrayList<>();
-        while(cursor.moveToNext())
-        {
-            listMonAn.add(new MonAn(
-                            cursor.getInt(0),
-                            cursor.getString(1),
-                            cursor.getString(2),
-                            cursor.getString(3),
-                            cursor.getBlob(4)
-                    )
-            );
-        }
-        //adapter.notifyDataSetChanged();
-        adapter=new MonAnAdapter(getActivity(),R.layout.item_monan,listMonAn);
-        gvMonAn.setAdapter(adapter);
-
     }
 
 //    public void AddImagesUrlOnline(){
@@ -160,24 +139,24 @@ public class DsMonAnFragment extends Fragment
         JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                arrayListMonAn.clear();
+               arrayListMonAn.clear();
                 for(int i=0;i<response.length();i++)
                 {
-//                    try {
-//                        JSONObject object=response.getJSONObject(i);
-//                        arrayListMonAn.add(new MonAn(
-//                                object.getInt("mamonan"),
-//                                object.getString("tenmonan"),
-//                                object.getString("nguyenlieu"),
-//                                object.getString("congthuc"),
-//                                object.getString("maloaimonan"),
-//                                object.getString("manguoidung"),
-//
-//
-//                        ));
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
+                    try {
+                        JSONObject object=response.getJSONObject(i);
+                        arrayListMonAn.add(new MonAn(
+                                object.getInt("mamonan"),
+                                object.getString("tenmonan"),
+                                object.getString("nguyenlieu"),
+                                object.getString("congthuc"),
+                                object.getString("hinhanh"),
+                                object.getString("maloaimonan"),
+                                object.getString("manguoidung")
+
+                        ));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                     adapter.notifyDataSetChanged();
                 }
             }

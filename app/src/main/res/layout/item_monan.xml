@@ -4,19 +4,20 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageviewHinhAnh"
-        android:layout_width="150dp"
+        android:id="@+id/imageviewHinhAnhMonAn"
+        android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="30dp"
         android:pointerIcon="cell" />
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="30dp"
+        android:layout_marginTop="20dp"
         android:background="@android:color/transparent">
         <TextView
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="32dp"
             android:id="@+id/tvName"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
@@ -28,11 +29,13 @@
             android:scrollHorizontally="true"
             android:singleLine="true"
             android:textColor="#0048FF"
+            android:textSize="16dp"
+            android:textStyle="bold"
             android:layout_marginBottom="20dp"
             android:layout_marginRight="20dp"/>
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_alignRight="@id/tvName"
             android:layout_alignParentRight="true"
             android:id="@+id/imageviewPromotion"/>

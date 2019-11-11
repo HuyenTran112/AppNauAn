@@ -3,12 +3,17 @@ package com.example.appnauan;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -52,7 +57,7 @@ public class MonAnAdapter extends BaseAdapter {
             holder=new ViewHolder();
             LayoutInflater inflater= (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
             view=inflater.inflate(layout,null);
-            holder.imgHinh=(ImageView)view.findViewById(R.id.imageviewHinhAnh);
+            holder.imgHinh=(ImageView)view.findViewById(R.id.imageviewHinhAnhMonAn);
             holder.tvName=(TextView) view.findViewById(R.id.tvName);
             holder.imageViewPromotion=(ImageView) view.findViewById(R.id.imageviewPromotion);
             view.setTag(holder);
@@ -62,12 +67,13 @@ public class MonAnAdapter extends BaseAdapter {
             holder=(ViewHolder) view.getTag();
         }
         MonAn monan=ListMonAn.get(i);
-        byte[]hinhAnh=monan.getHinhAnh();
-        Bitmap bitmap= BitmapFactory.decodeByteArray(hinhAnh,0,hinhAnh.length);
-        holder.imgHinh.setImageBitmap(bitmap);
+//        byte[] decodedString = Base64.decode(monan.getHinhAnh(), Base64.DEFAULT);
+//        Bitmap imgBitMap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        //Toast.makeText(context,monan.getHinhAnh(),Toast.LENGTH_SHORT).show();
+        Uri imgUri=Uri.parse(monan.getHinhAnh());
+        Picasso.with(context).load(imgUri).into(holder.imgHinh);
         holder.tvName.setText(monan.getTenMonAn());
-       holder.tvName.setSelected(true);
-
+        holder.tvName.setSelected(true);
         return view;
     }
 }

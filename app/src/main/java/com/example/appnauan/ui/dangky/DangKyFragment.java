@@ -78,13 +78,6 @@ public class DangKyFragment extends Fragment {
                 bitmap.compress(Bitmap.CompressFormat.PNG,100,byteArray);
                 //chuyển về mảng byte[]
                 byte[] hinhAnh=byteArray.toByteArray();
-                MainActivity.database.Insert_User(
-                        tenhienthi,
-                        email,
-                        matkhau,
-                        loaiuser,
-                        hinhAnh
-                );
                 Toast.makeText(getActivity(),"Đăng ký thành công",Toast.LENGTH_SHORT).show();
                 edtEmail.setText("");
                 edtPassWord.setText("");

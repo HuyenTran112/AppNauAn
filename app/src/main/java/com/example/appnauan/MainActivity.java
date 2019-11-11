@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     public static MainActivity instance;
     public static Database database;
     private AppBarConfiguration mAppBarConfiguration;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,5 +77,6 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
 
 }

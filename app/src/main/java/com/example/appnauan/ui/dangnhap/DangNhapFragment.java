@@ -35,6 +35,7 @@ import com.example.appnauan.NguoiDung;
 import com.example.appnauan.R;
 import com.example.appnauan.ui.dangky.DangKyFragment;
 import com.example.appnauan.ui.dangky.DangKyViewModel;
+import com.example.appnauan.ui.dsmonan.DsMonAnFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -121,6 +122,11 @@ public class DangNhapFragment extends Fragment {
                     //Toast.makeText(getActivity(),userCurrent.getTenHienThi().toString(),Toast.LENGTH_SHORT).show();
                     edtEmail.setText("");
                     edtMatKhau.setText("");
+                    DsMonAnFragment nextFrag = new DsMonAnFragment();
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.nav_host_fragment, nextFrag, "findThisFragment")
+                            .addToBackStack(null)
+                            .commit();
                 } else {
                     Toast.makeText(getActivity(), "Sai thông tin đăng nhập", Toast.LENGTH_SHORT).show();
                 }
@@ -164,7 +170,6 @@ public class DangNhapFragment extends Fragment {
                                 object.getString("matkhau"),
                                 object.getInt("maloainguoidung"),
                                 object.getString("hinhanh")
-
                         ));
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -188,10 +193,11 @@ public class DangNhapFragment extends Fragment {
             if(a.getEmail().equals(edtEmail.getText().toString().trim()) && a.getMatKhau().equals(edtMatKhau.getText().toString()))
             {
                 userCurrent=a;
+                MainActivity.instance.nguoidung=a;
             }
         }
         //Toast.makeText(getActivity(),userCurrent.getTenHienThi().toString(),Toast.LENGTH_SHORT).show();
-        MainActivity.instance.setInformationUser(userCurrent.getTenHienThi(),userCurrent.getHinhAnh());
+        MainActivity.instance.setInformationUser(MainActivity.instance.nguoidung.getTenHienThi(),userCurrent.getHinhAnh());
 
     }
 }

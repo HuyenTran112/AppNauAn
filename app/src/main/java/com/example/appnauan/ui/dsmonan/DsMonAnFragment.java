@@ -150,8 +150,8 @@ public class DsMonAnFragment extends Fragment
                                 object.getString("nguyenlieu"),
                                 object.getString("congthuc"),
                                 object.getString("hinhanh"),
-                                object.getString("maloaimonan"),
-                                object.getString("manguoidung")
+                                object.getInt("maloaimonan"),
+                                object.getInt("manguoidung")
 
                         ));
                     } catch (JSONException e) {

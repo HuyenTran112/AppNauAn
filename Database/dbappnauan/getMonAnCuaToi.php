@@ -1,7 +1,8 @@
 <?php
 //kết nối database
 require "dbConnect.php";
-$query="SELECT * FROM monan";
+$manguoidung=$_POST['manguoidung'];
+$query="SELECT * FROM monan where manguoidung='$manguoidung'";
 $data=mysqli_query($connection,$query);
 
 class MonAn{

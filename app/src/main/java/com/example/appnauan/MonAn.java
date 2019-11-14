@@ -8,10 +8,10 @@ public class MonAn {
     private String DSNguyenLieu;
     private String CongThuc;
     private String HinhAnh;
-    private String MaLoaiMonAn;
-    private String MaNguoiDung;
+    private int MaLoaiMonAn;
+    private int MaNguoiDung;
 
-    public MonAn(int maMonAn, String tenMonAn, String DSNguyenLieu, String congThuc, String hinhAnh, String maLoaiMonAn, String maNguoiDung) {
+    public MonAn(int maMonAn, String tenMonAn, String DSNguyenLieu, String congThuc, String hinhAnh, int maLoaiMonAn, int maNguoiDung) {
         MaMonAn = maMonAn;
         TenMonAn = tenMonAn;
         this.DSNguyenLieu = DSNguyenLieu;
@@ -19,6 +19,10 @@ public class MonAn {
         HinhAnh = hinhAnh;
         MaLoaiMonAn = maLoaiMonAn;
         MaNguoiDung = maNguoiDung;
+    }
+
+    public MonAn() {
+
     }
 
     public int getMaMonAn() {
@@ -61,19 +65,19 @@ public class MonAn {
         HinhAnh = hinhAnh;
     }
 
-    public String getMaLoaiMonAn() {
+    public int getMaLoaiMonAn() {
         return MaLoaiMonAn;
     }
 
-    public void setMaLoaiMonAn(String maLoaiMonAn) {
+    public void setMaLoaiMonAn(int maLoaiMonAn) {
         MaLoaiMonAn = maLoaiMonAn;
     }
 
-    public String getMaNguoiDung() {
+    public int getMaNguoiDung() {
         return MaNguoiDung;
     }
 
-    public void setMaNguoiDung(String maNguoiDung) {
+    public void setMaNguoiDung(int maNguoiDung) {
         MaNguoiDung = maNguoiDung;
     }
 }

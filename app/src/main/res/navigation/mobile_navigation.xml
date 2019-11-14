@@ -39,5 +39,16 @@
         android:name="com.example.appnauan.ui.send.SendFragment"
         android:label="@string/menu_dangnhap"
         tools:layout="@layout/fragment_send" />
+    <fragment
+        android:id="@+id/nav_monxao"
+        android:name="com.example.appnauan.ui.monancuatoi.MonAnCuaToiFragment"
+        android:label="Món xào"
+        tools:layout="@layout/fragment_monancuatoi" />
+    <fragment
+        android:id="@+id/nav_moncanh"
+        android:name="com.example.appnauan.ui.monancuatoi.MonAnCuaToiFragment"
+        android:label="Món canh"
+        tools:layout="@layout/fragment_monancuatoi" />
+
 
 </navigation>

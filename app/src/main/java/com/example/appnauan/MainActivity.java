@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     String noidung="";
     String urlSendUser = "http://10.80.255.137:8080/dbAppNauAn/sendUser.php";
     String urlGetUser = "http://10.80.255.137:8080/dbAppNauAn/getUser.php";
-
+    public NguoiDung nguoidung=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
         navUsername.setText(tenhienthi);
         Uri imgUri=Uri.parse(hinhanh);
         Picasso.with(this).load(imgUri).into(navImageUser);
-
     }
 
 }

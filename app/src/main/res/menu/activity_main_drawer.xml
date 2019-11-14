@@ -5,9 +5,24 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_dsmonan"
             android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_dsmonan" />
+            android:title="@string/menu_dsmonan" >
+            <menu>
+                <item
+                    android:id="@+id/nav_dsmonan"
+                    android:icon="@drawable/ic_menu_camera"
+                    android:title="@string/menu_dsmonan"
+                    />
+<!--                <item-->
+<!--                    android:id="@+id/nav_monxao"-->
+<!--                    android:icon="@drawable/ic_menu_share"-->
+<!--                    android:title="Món xào" />-->
+<!--                <item-->
+<!--                    android:id="@+id/nav_moncanh"-->
+<!--                    android:icon="@drawable/ic_menu_send"-->
+<!--                    android:title="Món canh" />-->
+            </menu>
+        </item>
         <item
             android:id="@+id/nav_monanyeuthich"
             android:icon="@drawable/ic_menu_gallery"

@@ -39,4 +39,5 @@
         android:name="com.example.appnauan.ui.send.SendFragment"
         android:label="@string/menu_dangnhap"
         tools:layout="@layout/fragment_send" />
+
 </navigation>

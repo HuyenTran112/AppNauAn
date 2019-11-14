@@ -21,6 +21,18 @@
         android:textColor="#1E39E9"
         android:id="@+id/tvSignup"
         />
+    <EditText
+        android:id="@+id/et_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="name@gmail.com"
+        android:inputType="textPersonName"
+        android:textColor="#1E39E9"
+        app:layout_constraintStart_toEndOf="@+id/tv_username"
+        app:layout_constraintTop_toBottomOf="@+id/tvSignup" />
 
     <EditText
         android:id="@+id/et_password"
@@ -47,18 +59,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSignup" />
 
-    <EditText
-        android:id="@+id/et_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:hint="name@gmail.com"
-        android:inputType="textPersonName"
-        android:textColor="#1E39E9"
-        app:layout_constraintStart_toEndOf="@+id/tv_username"
-        app:layout_constraintTop_toBottomOf="@+id/tvSignup" />
+
 
     <TextView
         android:id="@+id/tv_password"
@@ -72,15 +73,17 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_username" />
+
     <Button
+        android:id="@+id/buttonSingIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_marginRight="16dp"
+        android:text="Sign in"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_password"
-        android:text="Sign in"/>
+        app:layout_constraintTop_toBottomOf="@+id/et_password" />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

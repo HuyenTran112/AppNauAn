@@ -13,12 +13,13 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/imageViewUser"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:src="@drawable/icon_cook" />
+        android:src="@drawable/icon_cook"
+        />
 
     <TextView
         android:layout_width="match_parent"
@@ -32,10 +33,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nav_header_subtitle" />
+
+
     <TextView
-        android:id="@+id/textViewUser"
+        android:id="@+id/textViewAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Huyền Trân" />
+
 
 </LinearLayout>

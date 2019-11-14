@@ -8,6 +8,10 @@ public class NguoiDung {
     private int MaLoaiNguoiDung;
     private String HinhAnh;
 
+    public NguoiDung() {
+
+    }
+
     public int getMaNguoiDung() {
         return MaNguoiDung;
     }

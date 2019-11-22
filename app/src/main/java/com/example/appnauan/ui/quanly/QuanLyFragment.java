@@ -81,7 +81,7 @@ public class QuanLyFragment extends Fragment {
     ArrayList<LoaiMonAn> arrayListLoaiMonAn=new ArrayList<>();;
     LoaiMonAnAdapter loaiMonAnAdapter;
     String maloaimonan;
-
+    Bitmap bitmapfirst;
 
     public View getView()
     {
@@ -96,6 +96,8 @@ public class QuanLyFragment extends Fragment {
         view=root;
         getActivity().getFragmentManager().popBackStack();
         AnhXa();
+        BitmapDrawable bitmapDrawable= (BitmapDrawable) imgHinhAnh.getDrawable();
+        bitmapfirst=bitmapDrawable.getBitmap();
         loaiMonAnAdapter=new LoaiMonAnAdapter(getActivity(),R.layout.item_loaimonan,arrayListLoaiMonAn);
         spinnerLoaiMonAn.setAdapter(loaiMonAnAdapter);
         GetLoaiMonAn(urlGetLoaiMonAn);
@@ -133,7 +135,7 @@ public class QuanLyFragment extends Fragment {
 
                 Bitmap emptyBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
 
-                if(TenMonAn.isEmpty() || DsNguyenLieu.isEmpty()||CongThuc.isEmpty()||bitmap.sameAs(emptyBitmap))
+                if(TenMonAn.isEmpty() || DsNguyenLieu.isEmpty()||CongThuc.isEmpty()||bitmap.sameAs(emptyBitmap) ||bitmap.sameAs(bitmapfirst))
                 {
                     Toast.makeText(getActivity(),"Vui lòng nhập đầy đủ thông tin",Toast.LENGTH_SHORT).show();
                 }

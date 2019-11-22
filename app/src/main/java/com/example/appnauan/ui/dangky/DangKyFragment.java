@@ -40,6 +40,7 @@ import java.io.InputStream;
 import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
+import static com.example.appnauan.R.drawable.avatar;
 
 public class DangKyFragment extends Fragment {
 
@@ -55,6 +56,7 @@ public class DangKyFragment extends Fragment {
     private Bitmap bitmap;
     final int IMAGE_REQUEST_CODE=123;
     final int REQUEST_CODE_FOLDER=456;
+    Bitmap bitmapfirst;
     private static final String URL_INSERT_USER = "http://10.80.255.137:8080/dbappnauan/insertUser.php";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -65,6 +67,8 @@ public class DangKyFragment extends Fragment {
         view=root;
         AnhXa();
         requestStoragePermission();
+        BitmapDrawable bitmapDrawable= (BitmapDrawable) imgHinhAnh.getDrawable();
+        bitmapfirst=bitmapDrawable.getBitmap();
         imgHinhAnh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,7 +91,9 @@ public class DangKyFragment extends Fragment {
                 ByteArrayOutputStream byteArray=new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.PNG,100,byteArray);
                 Bitmap emptyBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
-                if(tenhienthi.isEmpty() || email.isEmpty() || matkhau.isEmpty() || bitmap.sameAs(emptyBitmap))
+
+
+                if(tenhienthi.isEmpty() || email.isEmpty() || matkhau.isEmpty() || bitmap.sameAs(emptyBitmap) ||bitmap.sameAs(bitmapfirst) )
                 {
                     Toast.makeText(getActivity(),"Vui lòng nhập đầy đủ thông tin",Toast.LENGTH_SHORT).show();
                 }
@@ -96,13 +102,14 @@ public class DangKyFragment extends Fragment {
                     edtEmail.setText("");
                     edtPassWord.setText("");
                     edtPassWord.setText("");
-                    imgHinhAnh.setImageResource(R.drawable.avatar);
+                    edtTenHienThi.setText("");
+                    imgHinhAnh.setImageResource(avatar);
                     Toast.makeText(getActivity(),"Đăng ký thành công",Toast.LENGTH_SHORT).show();
-                    DangNhapFragment nextFrag= new DangNhapFragment();
-                    getActivity().getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.nav_host_fragment, nextFrag, "findThisFragment")
-                            .addToBackStack(null)
-                            .commit();
+//                    DangNhapFragment nextFrag= new DangNhapFragment();
+//                    getActivity().getSupportFragmentManager().beginTransaction()
+//                            .replace(R.id.nav_host_fragment, nextFrag, "findThisFragment")
+//                            .addToBackStack(null)
+//                            .commit();
                 }
 
             }

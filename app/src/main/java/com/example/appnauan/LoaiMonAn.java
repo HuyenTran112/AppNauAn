@@ -24,4 +24,8 @@ public class LoaiMonAn {
     public void setTenLoaiMonAn(String tenLoaiMonAn) {
         TenLoaiMonAn = tenLoaiMonAn;
     }
+    public String getTenLoai(int maLoaiMonAn)
+    {
+        return TenLoaiMonAn;
+    }
 }

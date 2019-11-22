@@ -1,6 +1,7 @@
 package com.example.appnauan;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
 import java.util.List;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
@@ -66,7 +68,7 @@ public class MonAnAdapter extends BaseAdapter {
         {
             holder=(ViewHolder) view.getTag();
         }
-        MonAn monan=ListMonAn.get(i);
+        final MonAn monan=ListMonAn.get(i);
 //        byte[] decodedString = Base64.decode(monan.getHinhAnh(), Base64.DEFAULT);
 //        Bitmap imgBitMap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
         //Toast.makeText(context,monan.getHinhAnh(),Toast.LENGTH_SHORT).show();
@@ -74,6 +76,17 @@ public class MonAnAdapter extends BaseAdapter {
         Picasso.with(context).load(imgUri).into(holder.imgHinh);
         holder.tvName.setText(monan.getTenMonAn());
         holder.tvName.setSelected(true);
+        //bắt sự kiện xóa và sửa
+        holder.imgHinh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Toast.makeText(context,sinhVien.getHoTen(),Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(context,ChiTietMonAn.class);
+                intent.putExtra("dataMonAn", monan);
+                context.startActivity(intent);
+
+            }
+        });
         return view;
     }
 }

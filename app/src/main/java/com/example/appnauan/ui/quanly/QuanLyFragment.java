@@ -278,7 +278,7 @@ public class QuanLyFragment extends Fragment {
         }
     }
     //Lấy dữ liệu loại món ăn
-    private void GetLoaiMonAn(String url)
+    public void GetLoaiMonAn(String url)
     {
         RequestQueue requestQueue= Volley.newRequestQueue(getActivity());
         JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {

@@ -1,8 +1,9 @@
 package com.example.appnauan;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class MonAn {
+public class MonAn implements Serializable {
     private int MaMonAn;
     private String TenMonAn;
     private String DSNguyenLieu;

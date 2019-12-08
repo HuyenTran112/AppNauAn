@@ -1,7 +1,11 @@
 package com.example.appnauan;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.appnauan.ui.monancuatoi.MonAnCuaToiFragment;
 import com.example.appnauan.ui.quanly.QuanLyFragment;
 import com.squareup.picasso.Picasso;
 
@@ -29,10 +34,12 @@ public class ChiTietMonAn extends AppCompatActivity {
     TextView txtTenMonAn, txtCongThuc, txtDsNguyenLieu, txtLoaiMonAn;
     ImageView imgHinh;
     ArrayList<LoaiMonAn> arrayListLoaiMonAn;
-    String urlGetLoaiMonAn="http://10.80.255.137:8080/dbappnauan/getLoaiMonAn.php";
+    String urlGetLoaiMonAn="http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/getLoaiMonAn.php";
+//    String urlGetLoaiMonAn="http://10.80.255.137:8080/dbappnauan/getLoaiMonAn.php";
     String TenLoaiMonAn;
     MonAn monAn;
-    Button btnThoat;
+    Button btnThoat, btnCapNhat;
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +47,12 @@ public class ChiTietMonAn extends AppCompatActivity {
         Intent intent=getIntent();
         monAn= (MonAn) intent.getSerializableExtra("dataMonAn");
         AnhXa();
+
+        if(CheckMonAnCuaToi() == true)
+            btnCapNhat.setVisibility(View.VISIBLE);
+        else
+            btnCapNhat.setVisibility(View.GONE);
+
         arrayListLoaiMonAn=new ArrayList<>();
         GetLoaiMonAn(urlGetLoaiMonAn);
         txtTenMonAn.setText(txtTenMonAn.getText()+monAn.getTenMonAn());
@@ -52,6 +65,28 @@ public class ChiTietMonAn extends AppCompatActivity {
                 finish();
             }
         });
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        btnCapNhat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                QuanLyFragment quanLyFragment = new QuanLyFragment();
+
+                Bundle bundle = new Bundle();
+                bundle.putString("tieude", "Cập nhật món ăn");
+                bundle.putInt("mamonan", monAn.getMaMonAn());
+                bundle.putString("tenmonan", monAn.getTenMonAn());
+                bundle.putString("nguyenlieu", monAn.getDSNguyenLieu());
+                bundle.putString("congthuc", monAn.getCongThuc());
+                bundle.putString("hinhanh", monAn.getHinhAnh());
+                bundle.putInt("maloaimonan", monAn.getMaLoaiMonAn());
+                quanLyFragment.setArguments(bundle);
+
+                fragmentTransaction.add(R.id.activityCTMonAn, quanLyFragment);
+                fragmentTransaction.commit();
+            }
+        });
     }
 
     private void AnhXa() {
@@ -61,6 +96,7 @@ public class ChiTietMonAn extends AppCompatActivity {
         imgHinh=(ImageView) findViewById(R.id.imageViewHinhMonAnCT);
         txtLoaiMonAn=(TextView) findViewById(R.id.textViewLoaiMonAnCT);
         btnThoat=(Button) findViewById(R.id.buttonThoatCT);
+        btnCapNhat = (Button) findViewById(R.id.buttonCapNhat);
     }
     //Lấy dữ liệu loại món ăn
     public void GetLoaiMonAn(String url)
@@ -102,5 +138,15 @@ public class ChiTietMonAn extends AppCompatActivity {
         });
         requestQueue.add(jsonArrayRequest);
 
+    }
+
+    public boolean CheckMonAnCuaToi(){
+        if(MainActivity.instance.nguoidung!=null){
+            if(monAn.getMaNguoiDung()== MainActivity.instance.nguoidung.getMaNguoiDung())
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

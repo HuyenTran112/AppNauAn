@@ -63,8 +63,10 @@ public class DangNhapFragment extends Fragment {
     Button btnSignUp, btnLogin;
     public View view;
     EditText edtEmail, edtMatKhau;
-    private static final String URL_LOGIN = "http://10.80.255.137:8080/dbappnauan/login.php";
-    String urlGetUser = "http://10.80.255.137:8080/dbAppNauAn/getUser.php";
+    private static final String URL_LOGIN = "http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/login.php";
+    String urlGetUser = "http://172.17.28.47:8080/AppNauAn/Database/dbAppNauAn/getUser.php";
+//    private static final String URL_LOGIN = "http://10.80.255.137:8080/dbappnauan/login.php";
+//    String urlGetUser = "http://10.80.255.137:8080/dbAppNauAn/getUser.php";
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
     ArrayList<NguoiDung> arrayListNguoiDung=new ArrayList<>();
@@ -77,6 +79,10 @@ public class DangNhapFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_dangnhap, container, false);
         view = root;
         AnhXa();
+
+        edtEmail.setText("yen");
+        edtMatKhau.setText("123");
+
         GetNguoiDung(urlGetUser);
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +99,7 @@ public class DangNhapFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String Email = edtEmail.getText().toString().trim();
-                //String MatKhau=edtMatKhau.getText().toString().trim();
+                String MatKhau=edtMatKhau.getText().toString().trim();
                 Login(URL_LOGIN);
                 //Toast.makeText(getActivity(),Email+" "+MatKhau,Toast.LENGTH_SHORT).show();
             }

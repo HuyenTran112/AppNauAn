@@ -55,7 +55,8 @@ public class DangKyFragment extends Fragment {
     private Bitmap bitmap;
     final int IMAGE_REQUEST_CODE=123;
     final int REQUEST_CODE_FOLDER=456;
-    private static final String URL_INSERT_USER = "http://10.80.255.137:8080/dbappnauan/insertUser.php";
+    private static final String URL_INSERT_USER = "http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/insertUser.php";
+//    private static final String URL_INSERT_USER = "http://10.80.255.137:8080/dbappnauan/insertUser.php";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -96,13 +97,14 @@ public class DangKyFragment extends Fragment {
                     edtEmail.setText("");
                     edtPassWord.setText("");
                     edtPassWord.setText("");
+                    edtTenHienThi.setText("");
                     imgHinhAnh.setImageResource(R.drawable.avatar);
-                    Toast.makeText(getActivity(),"Đăng ký thành công",Toast.LENGTH_SHORT).show();
-                    DangNhapFragment nextFrag= new DangNhapFragment();
-                    getActivity().getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.nav_host_fragment, nextFrag, "findThisFragment")
-                            .addToBackStack(null)
-                            .commit();
+//                    Toast.makeText(getActivity(),"Đăng ký thành công",Toast.LENGTH_SHORT).show();
+//                    DangNhapFragment nextFrag= new DangNhapFragment();
+//                    getActivity().getSupportFragmentManager().beginTransaction()
+//                            .replace(R.id.nav_host_fragment, nextFrag, "findThisFragment")
+//                            .addToBackStack(null)
+//                            .commit();
                 }
 
             }
@@ -181,7 +183,7 @@ public class DangKyFragment extends Fragment {
 
     public void ThemUser() {
         //String caption = etCaption.getText().toString().trim();
-        String Email=edtEmail.getText().toString().trim();
+        String Email=edtEmail.getText().toString();
         String TenHienThi=edtTenHienThi.getText().toString().trim();
         String MatKhau=edtPassWord.getText().toString().trim();
         //getting the actual path of the image
@@ -203,8 +205,10 @@ public class DangKyFragment extends Fragment {
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
                     .startUpload(); //Starting the upload
+            Toast.makeText(getActivity(), "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
         } catch (Exception exc) {
-            Toast.makeText(getActivity(), exc.getMessage(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getActivity(), exc.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Lỗi!", Toast.LENGTH_SHORT).show();
         }
     }
 

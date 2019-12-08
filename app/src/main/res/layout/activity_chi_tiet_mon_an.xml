@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="15dp"
+    android:id="@+id/activityCTMonAn"
 
     android:background="@drawable/background1"
     tools:context=".MainActivity">
@@ -103,14 +104,25 @@
 
             <Button
                 android:background="@drawable/custom_button"
+                android:id="@+id/buttonCapNhat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="20dp"
+                android:text="Cập Nhật"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewHinhMonAnCT" />
+
+            <Button
+                android:background="@drawable/custom_button"
                 android:id="@+id/buttonThoatCT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="68dp"
+                android:layout_marginRight="60dp"
                 android:layout_marginTop="20dp"
                 android:text="Thoát"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+
                 app:layout_constraintTop_toBottomOf="@+id/imageViewHinhMonAnCT" />
 
 

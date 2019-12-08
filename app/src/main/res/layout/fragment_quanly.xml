@@ -35,19 +35,44 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvTenMonAn"
+                android:text="Tên món ăn:"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginRight="5dp"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:layout_constraintBottom_toTopOf="@+id/editTextTenMonAn"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
 
             <EditText
                 android:id="@+id/editTextTenMonAn"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="36dp"
-                android:ems="10"
+                android:ems="12"
                 android:hint="Nhập tên món ăn"
                 android:inputType="textPersonName"
                 android:text=""
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginRight="7dp"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvNguyenLieu"
+                android:text="Nguyên liệu:"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginRight="5dp"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTenMonAn"
+                app:layout_constraintBottom_toTopOf="@+id/editTextDsNguyenLieu"
+                app:layout_constraintLeft_toLeftOf="parent" />
 
             <EditText
                 android:id="@+id/editTextDsNguyenLieu"
@@ -61,6 +86,18 @@
                 android:text=""
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTenMonAn" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvCongThuc"
+                android:text="Công thức:"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginRight="5dp"
+                app:layout_constraintTop_toBottomOf="@+id/editTextDsNguyenLieu"
+                app:layout_constraintBottom_toTopOf="@+id/editTextCongThuc"
+                app:layout_constraintLeft_toLeftOf="parent" />
 
             <EditText
                 android:id="@+id/editTextCongThuc"
@@ -91,20 +128,31 @@
                 android:id="@+id/buttonAddMonAn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="68dp"
+                android:layout_marginLeft="50dp"
                 android:layout_marginTop="20dp"
                 android:text="Thêm"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageViewHinhMonAn" />
+
+            <Button
+                android:id="@+id/buttonUpdateMonAn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="20dp"
+                android:text="Cập nhật"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewHinhMonAn" />
+
 
             <Button
                 android:id="@+id/buttonHuyAddMonAn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="96dp"
                 android:layout_marginTop="20dp"
                 android:text="Hủy"
-                app:layout_constraintLeft_toRightOf="@id/buttonAddMonAn"
+                android:layout_marginRight="50dp"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageViewHinhMonAn" />
 
             <Spinner

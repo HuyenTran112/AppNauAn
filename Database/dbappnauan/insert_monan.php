@@ -2,8 +2,8 @@
 require 'dbConnect.php';
 global $connection;
 $upload_path = 'imagemonan/'; //this is our upload folder
-$server_ip = "10.80.255.137:8080"; //Getting the server ip
-$upload_url = 'http://'.$server_ip.'/dbappnauan/'.$upload_path;
+$server_ip = "172.17.28.47:8080/"; //Getting the server ip
+$upload_url = 'http://'.$server_ip.'AppNauAn/Database/dbappnauan/'.$upload_path;
 //response array
 $response = array();
  

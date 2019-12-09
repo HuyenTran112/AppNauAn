@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -65,6 +66,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
+import static com.example.appnauan.R.drawable.noimage;
 
 public class QuanLyFragment extends Fragment {
 
@@ -76,12 +78,14 @@ public class QuanLyFragment extends Fragment {
     public  static View view;
     private static final int IMAGE_REQUEST_CODE = 3;
     final int REQUEST_CODE_FOLDER=456;
-    private static final String URL_INSERT = "http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/insert_monan.php";
-    private static final String URL_UPDATE = "http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/update_monan.php";
-    private static final String URL_UPDATE1 = "http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/upd_monan.php";
-    String urlGetLoaiMonAn="http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/getLoaiMonAn.php";
-//    private static final String URL_INSERT = "http://10.80.255.137:8080/dbappnauan/insert_monan.php";
-//    String urlGetLoaiMonAn="http://10.80.255.137:8080/dbappnauan/getLoaiMonAn.php";
+   // private static final String URL_INSERT = "http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/insert_monan.php";
+    //private static final String URL_UPDATE = "http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/update_monan.php";
+    //private static final String URL_UPDATE1 = "http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/upd_monan.php";
+    private static final String URL_UPDATE = "http://10.80.255.123:8080/dbappnauan/update_monan.php";
+    private static final String URL_UPDATE1 = "http://10.80.255.123:8080/dbappnauan/upd_monan.php";
+   // String urlGetLoaiMonAn="http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/getLoaiMonAn.php";
+   private static final String URL_INSERT = "http://10.80.255.123:8080/dbappnauan/insert_monan.php";
+    String urlGetLoaiMonAn="http://10.80.255.123:8080/dbappnauan/getLoaiMonAn.php";
     private Uri filePath;
     private int counter=0;
     private Bitmap bitmap;
@@ -149,8 +153,9 @@ public class QuanLyFragment extends Fragment {
                 bitmap.compress(Bitmap.CompressFormat.PNG,100,byteArray);
 
                 Bitmap emptyBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
-
-                if(TenMonAn.isEmpty() || DsNguyenLieu.isEmpty()||CongThuc.isEmpty()||bitmap.sameAs(emptyBitmap))
+                Drawable myDrawable = getResources().getDrawable(noimage);
+                Bitmap bitmapfirst      = ((BitmapDrawable) myDrawable).getBitmap();
+                if(TenMonAn.isEmpty() || DsNguyenLieu.isEmpty()||CongThuc.isEmpty()||bitmap.sameAs(emptyBitmap)|bitmap.sameAs(bitmapfirst))
                 {
                     Toast.makeText(getActivity(),"Vui lòng nhập đầy đủ thông tin",Toast.LENGTH_SHORT).show();
                 }
@@ -159,7 +164,7 @@ public class QuanLyFragment extends Fragment {
                     edtCongThuc.setText("");
                     edtDSNguyenLieu.setText("");
                     edtTenMonAn.setText("");
-                    imgHinhAnh.setImageResource(R.drawable.noimage);
+                    imgHinhAnh.setImageResource(noimage);
                     Toast.makeText(getActivity(),"Thêm món ăn thành công",Toast.LENGTH_SHORT).show();
 
                 }
@@ -175,7 +180,7 @@ public class QuanLyFragment extends Fragment {
                 edtTenMonAn.setText("");
                 edtDSNguyenLieu.setText("");
                 edtCongThuc.setText("");
-                imgHinhAnh.setImageResource(R.drawable.noimage);
+                imgHinhAnh.setImageResource(noimage);
 
                 //Toast.makeText(getActivity(),"Path: "+getPath(filePath),Toast.LENGTH_SHORT).show();
             }
@@ -195,7 +200,6 @@ public class QuanLyFragment extends Fragment {
                 bitmap.compress(Bitmap.CompressFormat.PNG,100,byteArray);
 
                 Bitmap emptyBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
-
                 if(TenMonAn.isEmpty() || DsNguyenLieu.isEmpty()||CongThuc.isEmpty()||bitmap.sameAs(emptyBitmap))
                 {
                     Toast.makeText(getActivity(),"Vui lòng nhập đầy đủ thông tin",Toast.LENGTH_SHORT).show();
@@ -337,7 +341,7 @@ public class QuanLyFragment extends Fragment {
                             edtCongThuc.setText("");
                             edtDSNguyenLieu.setText("");
                             edtTenMonAn.setText("");
-                            imgHinhAnh.setImageResource(R.drawable.noimage);
+                            imgHinhAnh.setImageResource(noimage);
                         }
                         else
                             Toast.makeText(getActivity(),"Lỗi cập nhật!",Toast.LENGTH_SHORT).show();
@@ -381,11 +385,11 @@ public class QuanLyFragment extends Fragment {
                 edtCongThuc.setText("");
                 edtDSNguyenLieu.setText("");
                 edtTenMonAn.setText("");
-                imgHinhAnh.setImageResource(R.drawable.noimage);
+                imgHinhAnh.setImageResource(noimage);
                 Toast.makeText(getActivity(),"Cập nhật món ăn thành công",Toast.LENGTH_SHORT).show();
             }
         } catch (Exception exc) {
-            //Toast.makeText(getActivity(), exc.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), exc.getMessage(), Toast.LENGTH_SHORT).show();
             Toast.makeText(getActivity(),"Lỗi cập nhật!",Toast.LENGTH_SHORT).show();
         }
     }
@@ -456,7 +460,7 @@ public class QuanLyFragment extends Fragment {
                         ));
                         spinnerLoaiMonAn.setSelection(pos-1);
                         } catch (JSONException e) {
-                        e.printStackTrace();
+                       // e.printStackTrace();
                     }
                     loaiMonAnAdapter.notifyDataSetChanged();
                 }

@@ -107,7 +107,7 @@
                 android:id="@+id/buttonCapNhat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
+                android:layout_marginLeft="40dp"
                 android:layout_marginTop="20dp"
                 android:text="Cập Nhật"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -118,11 +118,21 @@
                 android:id="@+id/buttonThoatCT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="60dp"
+                android:layout_marginRight="40dp"
                 android:layout_marginTop="20dp"
                 android:text="Thoát"
                 app:layout_constraintRight_toRightOf="parent"
 
+                app:layout_constraintTop_toBottomOf="@+id/imageViewHinhMonAnCT" />
+            <Button
+                android:background="@drawable/custom_button"
+                android:id="@+id/buttonDeleteCT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Xóa"
+                app:layout_constraintLeft_toLeftOf="@id/buttonCapNhat"
+                app:layout_constraintRight_toRightOf="@id/buttonThoatCT"
                 app:layout_constraintTop_toBottomOf="@+id/imageViewHinhMonAnCT" />
 
 

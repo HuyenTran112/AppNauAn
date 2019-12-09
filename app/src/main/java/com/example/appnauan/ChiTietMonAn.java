@@ -1,11 +1,14 @@
 package com.example.appnauan;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,13 +17,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.appnauan.ui.dangnhap.DangNhapFragment;
+import com.example.appnauan.ui.dsmonan.DsMonAnFragment;
 import com.example.appnauan.ui.monancuatoi.MonAnCuaToiFragment;
+import com.example.appnauan.ui.monancuatoi.MonAnCuaToiViewModel;
 import com.example.appnauan.ui.quanly.QuanLyFragment;
 import com.squareup.picasso.Picasso;
 
@@ -29,29 +37,43 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ChiTietMonAn extends AppCompatActivity {
     TextView txtTenMonAn, txtCongThuc, txtDsNguyenLieu, txtLoaiMonAn;
     ImageView imgHinh;
     ArrayList<LoaiMonAn> arrayListLoaiMonAn;
-    String urlGetLoaiMonAn="http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/getLoaiMonAn.php";
-//    String urlGetLoaiMonAn="http://10.80.255.137:8080/dbappnauan/getLoaiMonAn.php";
+    //String urlGetLoaiMonAn="http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/getLoaiMonAn.php";
+    String urlGetLoaiMonAn="http://10.80.255.123:8080/dbappnauan/getLoaiMonAn.php";
+    String urlDelete="http://10.80.255.123:8080/dbappnauan/deleteMonAn.php";
+    String urlgetData="http://10.80.255.123:8080/dbappnauan/getMonAn.php";
     String TenLoaiMonAn;
     MonAn monAn;
-    Button btnThoat, btnCapNhat;
+    Button btnThoat, btnCapNhat,btnXoa;
     Context context;
+    ArrayList<MonAn> arrayMonAn;
+    MonAnAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chi_tiet_mon_an);
         Intent intent=getIntent();
+        arrayMonAn=new ArrayList<>();
         monAn= (MonAn) intent.getSerializableExtra("dataMonAn");
+        adapter=new MonAnAdapter(ChiTietMonAn.this,R.layout.item_monan,arrayMonAn);
         AnhXa();
 
         if(CheckMonAnCuaToi() == true)
+        {
             btnCapNhat.setVisibility(View.VISIBLE);
+            btnXoa.setVisibility(View.VISIBLE);
+        }
         else
+        {
             btnCapNhat.setVisibility(View.GONE);
+            btnXoa.setVisibility(View.GONE);
+        }
 
         arrayListLoaiMonAn=new ArrayList<>();
         GetLoaiMonAn(urlGetLoaiMonAn);
@@ -72,7 +94,6 @@ public class ChiTietMonAn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 QuanLyFragment quanLyFragment = new QuanLyFragment();
-
                 Bundle bundle = new Bundle();
                 bundle.putString("tieude", "Cập nhật món ăn");
                 bundle.putInt("mamonan", monAn.getMaMonAn());
@@ -82,9 +103,14 @@ public class ChiTietMonAn extends AppCompatActivity {
                 bundle.putString("hinhanh", monAn.getHinhAnh());
                 bundle.putInt("maloaimonan", monAn.getMaLoaiMonAn());
                 quanLyFragment.setArguments(bundle);
-
                 fragmentTransaction.add(R.id.activityCTMonAn, quanLyFragment);
                 fragmentTransaction.commit();
+            }
+        });
+        btnXoa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                XacNhanXoa(monAn.getTenMonAn(),monAn.getMaMonAn());
             }
         });
     }
@@ -97,6 +123,7 @@ public class ChiTietMonAn extends AppCompatActivity {
         txtLoaiMonAn=(TextView) findViewById(R.id.textViewLoaiMonAnCT);
         btnThoat=(Button) findViewById(R.id.buttonThoatCT);
         btnCapNhat = (Button) findViewById(R.id.buttonCapNhat);
+        btnXoa=(Button) findViewById(R.id.buttonDeleteCT);
     }
     //Lấy dữ liệu loại món ăn
     public void GetLoaiMonAn(String url)
@@ -149,4 +176,92 @@ public class ChiTietMonAn extends AppCompatActivity {
         }
         return false;
     }
+    private void XacNhanXoa(String ten, final int id)
+    {
+        AlertDialog.Builder dialogXoa=new AlertDialog.Builder(ChiTietMonAn.this);
+        dialogXoa.setMessage("Bạn có muốn xóa món "+ten+" không?");
+        dialogXoa.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                DeleteMonAn(id);
+            }
+        });
+        dialogXoa.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        dialogXoa.show();
+    }
+    public void DeleteMonAn(final int id)
+    {
+        RequestQueue requestQueue=Volley.newRequestQueue(this);
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, urlDelete, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if(response.trim().equals("success"))
+                {
+                    Toast.makeText(ChiTietMonAn.this,"Xóa món ăn thành công",Toast.LENGTH_SHORT).show();
+                    GetData(urlgetData);
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    DsMonAnFragment quanLyFragment = new DsMonAnFragment();
+                    fragmentTransaction.add(R.id.activityCTMonAn, quanLyFragment);
+                    fragmentTransaction.commit();
+                }
+                else
+                    Toast.makeText(ChiTietMonAn.this,"Lỗi xóa",Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(ChiTietMonAn.this,"Xảy ra lỗi. Vui lòng thử lại",Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params=new HashMap<>();
+                params.put("mamonan",String.valueOf(id));
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
+    private void GetData(String url)
+    {
+        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                arrayMonAn.clear();
+                for(int i=0;i<response.length();i++)
+                {
+                    try {
+                        JSONObject object=response.getJSONObject(i);
+                        arrayMonAn.add(new MonAn(
+                                object.getInt("mamonan"),
+                                object.getString("tenmonan"),
+                                object.getString("nguyenlieu"),
+                                object.getString("congthuc"),
+                                object.getString("hinhanh"),
+                                object.getInt("maloaimonan"),
+                                object.getInt("manguoidung")
+
+                        ));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(ChiTietMonAn.this,error.toString(),Toast.LENGTH_LONG).show();
+            }
+        });
+        requestQueue.add(jsonArrayRequest);
+    }
+
 }

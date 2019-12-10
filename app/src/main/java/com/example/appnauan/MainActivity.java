@@ -27,6 +27,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -66,10 +67,17 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_dsmonan, R.id.nav_monanyeuthich, R.id.nav_monancuatoi,
-                R.id.nav_dangnhap, R.id.nav_quanly, R.id.nav_send)
-                .setDrawerLayout(drawer)
-                .build();
+                    R.id.nav_dsmonan, R.id.nav_monanyeuthich, R.id.nav_monancuatoi,
+                    R.id.nav_dangnhap, R.id.nav_quanly, R.id.nav_send)
+                    .setDrawerLayout(drawer)
+                    .build();
+        if(KiemTraDangNhap()==false)
+        {
+                SetEnableMenuItem(false);
+        }
+        else{
+            SetEnableMenuItem(true);
+        }
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
@@ -107,5 +115,23 @@ public class MainActivity extends AppCompatActivity {
         navUsername.setText(tenhienthi);
         Uri imgUri=Uri.parse(hinhanh);
         Picasso.with(this).load(imgUri).into(navImageUser);
+    }
+    public boolean KiemTraDangNhap(){
+        if(MainActivity.instance.nguoidung!=null){
+            return true;
+        }
+        return false;
+    }
+    public void SetEnableMenuItem(boolean enable)
+    {
+        NavigationView navigationView= findViewById(R.id.nav_view);
+        Menu menuNav=navigationView.getMenu();
+        MenuItem nav_itemquanly = menuNav.findItem(R.id.nav_quanly);
+        nav_itemquanly.setEnabled(enable);
+        MenuItem nav_itemmonancuatoi = menuNav.findItem(R.id.nav_monancuatoi);
+        nav_itemmonancuatoi.setEnabled(enable);
+        MenuItem nav_itemmonanyeuthich = menuNav.findItem(R.id.nav_monanyeuthich);
+        nav_itemmonanyeuthich.setEnabled(enable);
+
     }
 }

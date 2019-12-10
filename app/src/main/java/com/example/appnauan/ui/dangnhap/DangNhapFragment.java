@@ -1,6 +1,5 @@
 package com.example.appnauan.ui.dangnhap;
 
-import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -17,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,6 +36,7 @@ import com.example.appnauan.R;
 import com.example.appnauan.ui.dangky.DangKyFragment;
 import com.example.appnauan.ui.dangky.DangKyViewModel;
 import com.example.appnauan.ui.dsmonan.DsMonAnFragment;
+import com.example.appnauan.ui.quanly.QuanLyFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -130,6 +131,8 @@ public class DangNhapFragment extends Fragment {
                             .replace(R.id.nav_host_fragment, nextFrag, "findThisFragment")
                             .addToBackStack(null)
                             .commit();
+
+                    MainActivity.instance.SetEnableMenuItem(true);
                 } else {
                     Toast.makeText(getActivity(), "Sai thông tin đăng nhập", Toast.LENGTH_SHORT).show();
                 }

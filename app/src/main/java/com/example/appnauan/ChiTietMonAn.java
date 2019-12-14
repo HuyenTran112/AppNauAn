@@ -34,7 +34,7 @@ public class ChiTietMonAn extends AppCompatActivity {
     TextView txtTenMonAn, txtCongThuc, txtDsNguyenLieu, txtLoaiMonAn;
     ImageView imgHinh;
     ArrayList<LoaiMonAn> arrayListLoaiMonAn;
-    String urlGetLoaiMonAn="http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/getLoaiMonAn.php";
+    String urlGetLoaiMonAn="http://172.17.20.139:8080/AppNauAn/Database/dbappnauan/getLoaiMonAn.php";
 //    String urlGetLoaiMonAn="http://10.80.255.137:8080/dbappnauan/getLoaiMonAn.php";
     String TenLoaiMonAn;
     MonAn monAn;
@@ -83,7 +83,7 @@ public class ChiTietMonAn extends AppCompatActivity {
                 bundle.putInt("maloaimonan", monAn.getMaLoaiMonAn());
                 quanLyFragment.setArguments(bundle);
 
-                fragmentTransaction.add(R.id.activityCTMonAn, quanLyFragment);
+                fragmentTransaction.add(R.id.activityCTMonAn, quanLyFragment, "CapNhatMonAn");
                 fragmentTransaction.commit();
             }
         });

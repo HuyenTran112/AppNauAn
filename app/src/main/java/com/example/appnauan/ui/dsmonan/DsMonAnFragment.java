@@ -7,6 +7,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
@@ -55,7 +57,7 @@ public class DsMonAnFragment extends Fragment
     private MonAnAdapter adapter;
     GridView gvMonAn;
     ArrayList<MonAn> arrayListMonAn=new ArrayList<>();
-    String urlGetMonAn="http://172.17.28.47:8080/AppNauAn/Database/dbAppNauAn/getMonAn.php";
+    String urlGetMonAn="http://172.17.20.139:8080/AppNauAn/Database/dbAppNauAn/getMonAn.php";
 //    String urlGetMonAn="http://10.80.255.137:8080/dbAppNauAn/getMonAn.php";
     SliderLayout sliderLayout ;
     HashMap<String, Integer> HashMapForLocalRes ;

@@ -4,6 +4,9 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -18,6 +21,8 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appnauan.ui.dangnhap.DangNhapFragment;
+import com.example.appnauan.ui.monancuatoi.MonAnCuaToiFragment;
+import com.example.appnauan.ui.timkiem.TimKiemFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
 
@@ -27,6 +32,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -50,10 +56,9 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     String User;
     String noidung="";
-    String urlGetLoaiMonAn="http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/getLoaiMonAn.php";
+    String urlGetLoaiMonAn="http://172.17.20.139:8080/AppNauAn/Database/dbappnauan/getLoaiMonAn.php";
 //    String urlGetLoaiMonAn="http://10.80.255.137:8080/dbappnauan/getLoaiMonAn.php";
     public NguoiDung nguoidung=null;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_dsmonan, R.id.nav_monanyeuthich, R.id.nav_monancuatoi,
-                R.id.nav_dangnhap, R.id.nav_quanly, R.id.nav_send)
+                R.id.nav_dangnhap, R.id.nav_quanly, R.id.nav_send, R.id.nav_timkiem)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -82,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
         //Toast.makeText(MainActivity.this,User, Toast.LENGTH_SHORT).show();
 
         //QuanLyFragment quanLyFragment= (QuanLyFragment) new QuanLyFragment();
+
     }
 
     @Override
@@ -89,6 +95,20 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.action_search) {
+            TimKiemFragment timKiemFragment = new TimKiemFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.add(R.id.nav_host_fragment, timKiemFragment, "TimKiemMonAn").commit();
+
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

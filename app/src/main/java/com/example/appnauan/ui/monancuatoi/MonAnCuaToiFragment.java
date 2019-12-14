@@ -40,7 +40,7 @@ public class MonAnCuaToiFragment extends Fragment {
     GridView gvMonAnCuaToi;
     ArrayList<MonAn> arrayListMonAn=new ArrayList<>();
     ArrayList<MonAn> arrayListMonAnCuaToi=new ArrayList<>();
-    String urlGetMonAn="http://172.17.28.47:8080/AppNauAn/Database/dbAppNauAn/getMonAn.php";
+    String urlGetMonAn="http://172.17.20.139:8080/AppNauAn/Database/dbAppNauAn/getMonAn.php";
 //    String urlGetMonAn="http://10.80.255.137:8080/dbAppNauAn/getMonAn.php";
 
 

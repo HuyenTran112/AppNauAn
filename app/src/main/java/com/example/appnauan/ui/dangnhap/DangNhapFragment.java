@@ -63,8 +63,8 @@ public class DangNhapFragment extends Fragment {
     Button btnSignUp, btnLogin;
     public View view;
     EditText edtEmail, edtMatKhau;
-    private static final String URL_LOGIN = "http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/login.php";
-    String urlGetUser = "http://172.17.28.47:8080/AppNauAn/Database/dbAppNauAn/getUser.php";
+    private static final String URL_LOGIN = "http://172.17.20.139:8080/AppNauAn/Database/dbappnauan/login.php";
+    String urlGetUser = "http://172.17.20.139:8080/AppNauAn/Database/dbAppNauAn/getUser.php";
 //    private static final String URL_LOGIN = "http://10.80.255.137:8080/dbappnauan/login.php";
 //    String urlGetUser = "http://10.80.255.137:8080/dbAppNauAn/getUser.php";
     public static final int CONNECTION_TIMEOUT = 10000;

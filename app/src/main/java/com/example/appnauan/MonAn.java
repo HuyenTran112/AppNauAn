@@ -11,7 +11,6 @@ public class MonAn implements Serializable {
     private String HinhAnh;
     private int MaLoaiMonAn;
     private int MaNguoiDung;
-
     public MonAn(int maMonAn, String tenMonAn, String DSNguyenLieu, String congThuc, String hinhAnh, int maLoaiMonAn, int maNguoiDung) {
         MaMonAn = maMonAn;
         TenMonAn = tenMonAn;

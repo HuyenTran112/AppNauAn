@@ -40,6 +40,12 @@
         android:label="@string/menu_dangnhap"
         tools:layout="@layout/fragment_send" />
     <fragment
+        android:id="@+id/nav_timkiem"
+        android:name="com.example.appnauan.ui.timkiem.TimKiemFragment"
+        android:label="Tìm kiếm"
+        tools:layout="@layout/fragment_timkiem"/>
+
+    <fragment
         android:id="@+id/nav_monxao"
         android:name="com.example.appnauan.ui.monancuatoi.MonAnCuaToiFragment"
         android:label="Món xào"
@@ -47,8 +53,7 @@
     <fragment
         android:id="@+id/nav_moncanh"
         android:name="com.example.appnauan.ui.monancuatoi.MonAnCuaToiFragment"
-        android:label="Món canh"
-        tools:layout="@layout/fragment_monancuatoi" />
+        android:label="Món canh" />
 
 
 </navigation>

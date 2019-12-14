@@ -32,6 +32,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.android.volley.AuthFailureError;
@@ -45,7 +47,10 @@ import com.android.volley.toolbox.Volley;
 import com.example.appnauan.LoaiMonAn;
 import com.example.appnauan.LoaiMonAnAdapter;
 import com.example.appnauan.MainActivity;
+import com.example.appnauan.MonAn;
+import com.example.appnauan.MonAnAdapter;
 import com.example.appnauan.R;
+import com.example.appnauan.ui.dsmonan.DsMonAnFragment;
 import com.squareup.picasso.Picasso;
 
 import net.gotev.uploadservice.MultipartUploadRequest;
@@ -78,20 +83,23 @@ public class QuanLyFragment extends Fragment {
     public  static View view;
     private static final int IMAGE_REQUEST_CODE = 3;
     final int REQUEST_CODE_FOLDER=456;
+
    // private static final String URL_INSERT = "http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/insert_monan.php";
     //private static final String URL_UPDATE = "http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/update_monan.php";
     //private static final String URL_UPDATE1 = "http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/upd_monan.php";
-    private static final String URL_UPDATE = "http://10.80.255.123:8080/dbappnauan/update_monan.php";
-    private static final String URL_UPDATE1 = "http://10.80.255.123:8080/dbappnauan/upd_monan.php";
+    private static final String URL_UPDATE = "http://172.17.20.139:8080/AppNauAn/Database/dbappnauan/update_monan.php";
    // String urlGetLoaiMonAn="http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/getLoaiMonAn.php";
    private static final String URL_INSERT = "http://10.80.255.123:8080/dbappnauan/insert_monan.php";
     String urlGetLoaiMonAn="http://10.80.255.123:8080/dbappnauan/getLoaiMonAn.php";
+
     private Uri filePath;
     private int counter=0;
     private Bitmap bitmap;
     Spinner spinnerLoaiMonAn;
     ArrayList<LoaiMonAn> arrayListLoaiMonAn=new ArrayList<>();
+    ArrayList<MonAn> monAnArrayList = new ArrayList<>();
     LoaiMonAnAdapter loaiMonAnAdapter;
+    MonAnAdapter monAnAdapter;
     String maloaimonan, urlImage = "";
 
     public View getView()
@@ -116,7 +124,7 @@ public class QuanLyFragment extends Fragment {
             btnCapNhat.setVisibility(View.GONE);
             btnThem.setVisibility(View.VISIBLE);
         }
-
+        monAnAdapter = new MonAnAdapter(getActivity(), R.layout.item_monan, monAnArrayList);
         loaiMonAnAdapter=new LoaiMonAnAdapter(getActivity(),R.layout.item_loaimonan,arrayListLoaiMonAn);
         spinnerLoaiMonAn.setAdapter(loaiMonAnAdapter);
         GetLoaiMonAn(urlGetLoaiMonAn, 0);
@@ -333,7 +341,7 @@ public class QuanLyFragment extends Fragment {
             String uploadId = UUID.randomUUID().toString();
             if (path.equals("http")) {
                 RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_UPDATE1, new Response.Listener<String>() {
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_UPDATE, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         if(response.trim().equals("success")) {
@@ -341,10 +349,20 @@ public class QuanLyFragment extends Fragment {
                             edtCongThuc.setText("");
                             edtDSNguyenLieu.setText("");
                             edtTenMonAn.setText("");
-                            imgHinhAnh.setImageResource(noimage);
+
+                            imgHinhAnh.setImageResource(R.drawable.noimage);
+
+//                            monAnAdapter.notifyDataSetChanged();
+//
+//                            DsMonAnFragment dsMonAnFragment = new DsMonAnFragment();
+//                            FragmentManager fm = getFragmentManager();
+//                            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+//                            fragmentTransaction.add(R.id.activityCTMonAn, dsMonAnFragment);
+//                            fragmentTransaction.commit();
+
                         }
                         else
-                            Toast.makeText(getActivity(),"Lỗi cập nhật!",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(),"Lỗi cập nhật! http",Toast.LENGTH_SHORT).show();
                     }
                 },
                         new Response.ErrorListener() {
@@ -362,6 +380,7 @@ public class QuanLyFragment extends Fragment {
                         params.put("nguyenlieu", DsNguyenLieu);
                         params.put("congthuc", CongThuc);
                         params.put("maloaimonan", maloaimonan);
+                        params.put("strpath", "http");
                         return params;
                     }
                 };
@@ -369,24 +388,40 @@ public class QuanLyFragment extends Fragment {
             }
             else {
                 //Creating a multi part request
-                new MultipartUploadRequest(getActivity(), uploadId, URL_UPDATE)
-                        .addParameter("strpath", "upload")
-                        .addFileToUpload(path, "image") //Adding file
-                        .addParameter("mamonan", MaMonAn.toString())
-                        .addParameter("tenmonan", TenMonAn)
-                        .addParameter("nguyenlieu", DsNguyenLieu)
-                        .addParameter("congthuc", CongThuc)
-                        .addParameter("maloaimonan", maloaimonan)
-                        .setUtf8Charset()
-                        //Adding text parameter to the request
-                        .setNotificationConfig(new UploadNotificationConfig())
-                        .setMaxRetries(2)
-                        .startUpload(); //Starting the upload
-                edtCongThuc.setText("");
-                edtDSNguyenLieu.setText("");
-                edtTenMonAn.setText("");
-                imgHinhAnh.setImageResource(noimage);
-                Toast.makeText(getActivity(),"Cập nhật món ăn thành công",Toast.LENGTH_SHORT).show();
+
+                try {
+                    new MultipartUploadRequest(getActivity(), uploadId, URL_UPDATE)
+                            .addParameter("strpath", "upload")
+                            .addFileToUpload(path, "image") //Adding file
+                            .addParameter("mamonan", MaMonAn.toString())
+                            .addParameter("tenmonan", TenMonAn)
+                            .addParameter("nguyenlieu", DsNguyenLieu)
+                            .addParameter("congthuc", CongThuc)
+                            .addParameter("maloaimonan", maloaimonan)
+                            .setUtf8Charset()
+                            //Adding text parameter to the request
+                            .setNotificationConfig(new UploadNotificationConfig())
+                            .setMaxRetries(2)
+                            .startUpload(); //Starting the upload
+                    edtCongThuc.setText("");
+                    edtDSNguyenLieu.setText("");
+                    edtTenMonAn.setText("");
+                    imgHinhAnh.setImageResource(R.drawable.noimage);
+                    Toast.makeText(getActivity(),"Cập nhật món ăn thành công",Toast.LENGTH_SHORT).show();
+
+//                    monAnAdapter.notifyDataSetChanged();
+
+//                    DsMonAnFragment dsMonAnFragment = new DsMonAnFragment();
+//                    FragmentManager fm = getFragmentManager();
+//                    FragmentTransaction fragmentTransaction = fm.beginTransaction();
+//                    fragmentTransaction.add(R.id.activityCTMonAn, dsMonAnFragment);
+//                    fragmentTransaction.commit();
+
+                } catch (Exception e) {
+                    Toast.makeText(getActivity(),"Lỗi cập nhật",Toast.LENGTH_LONG).show();
+                }
+
+
             }
         } catch (Exception exc) {
             Toast.makeText(getActivity(), exc.getMessage(), Toast.LENGTH_SHORT).show();

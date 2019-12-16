@@ -69,6 +69,7 @@ public class DsMonAnFragment extends Fragment
         gvMonAn=(GridView) root.findViewById(R.id.gridviewHinhAnh);
         adapter=new MonAnAdapter(getActivity(),R.layout.item_monan,arrayListMonAn);
         gvMonAn.setAdapter(adapter);
+        //gọi hàm lấy danh sách món ăn
         GetMonAn(urlGetMonAn);
         sliderLayout = (SliderLayout)root.findViewById(R.id.slider);
         AddImageUrlFormLocalRes();
@@ -134,6 +135,7 @@ public class DsMonAnFragment extends Fragment
     public void onPageScrollStateChanged(int state) {
 
     }
+    //lấy danh sách món ăn
     private void GetMonAn(String url)
     {
         RequestQueue requestQueue= Volley.newRequestQueue(getActivity());

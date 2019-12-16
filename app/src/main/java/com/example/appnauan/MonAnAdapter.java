@@ -30,6 +30,8 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appnauan.ui.dsmonan.DsMonAnFragment;
+import com.example.appnauan.ui.monancuatoi.MonAnCuaToiFragment;
+import com.example.appnauan.ui.monanyeuthich.MonAnYeuThichFragment;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -105,16 +107,55 @@ public class MonAnAdapter extends BaseAdapter {
         Picasso.with(context).load(imgUri).into(holder.imgHinh);
         holder.tvName.setText(monan.getTenMonAn());
         holder.tvName.setSelected(true);
+
         if(MainActivity.instance.KiemTraDangNhap())
         {
             holder.imageViewStar.setVisibility(View.VISIBLE);
-            for(MonAnYeuThich monAnYeuThich: KiemTraMonYeuThich())
-            {
-                if(monAnYeuThich.getMaMonAn()==monan.getMaMonAn())
-                {
-                    holder.imageViewStar.setImageResource(R.drawable.icon_star_check);
+            RequestQueue requestQueue= Volley.newRequestQueue(context);
+            //arrayListMonAnYeuThich.add(new MonAnYeuThich(7,1));
+            JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Request.Method.GET, urlGetMonAnYeuThich, null, new Response.Listener<JSONArray>() {
+                @Override
+                public void onResponse(JSONArray response) {
+                    arrayListMonAnYeuThich.clear();
+                    for(int i=0;i<response.length();i++)
+                    {
+                        try {
+                            JSONObject object=response.getJSONObject(i);
+                            arrayListMonAnYeuThich.add(new MonAnYeuThich(
+                                    object.getInt("mamonan"),
+                                    object.getInt("manguoidung")
+
+                            ));
+                           for(MonAnYeuThich monAnYeuThich:arrayListMonAnYeuThich)
+                           {
+                               if(monan.getMaMonAn()==monAnYeuThich.getMaMonAn() &&MainActivity.instance.nguoidung.getMaNguoiDung()==monAnYeuThich.getMaNguoiDung())
+                               {
+                                   holder.imageViewStar.setImageResource(R.drawable.icon_star_check);
+                               }
+                           }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
                 }
-            }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(context,error.toString(),Toast.LENGTH_LONG).show();
+                }
+            });
+            requestQueue.add(jsonArrayRequest);
+
+//            for(MonAnYeuThich monAnYeuThich: KiemTraMonYeuThich())
+//            {
+//
+//                if(monAnYeuThich.getMaMonAn()==monan.getMaMonAn())
+//                {
+//                    holder.imageViewStar.setImageResource(R.drawable.icon_star_check);
+//                }
+//            }
 
         }
         else
@@ -148,10 +189,19 @@ public class MonAnAdapter extends BaseAdapter {
                 }
                 else
                 {
-                   // Toast.makeText(context," Star",Toast.LENGTH_SHORT).show();
-                   // XacNhanDeleteMonAnYeuThich(monan.getTenMonAn(),monan.getMaMonAn());
                     DeleteMonAnYeuThich(monan.getMaMonAn());
                     holder.imageViewStar.setImageResource(R.drawable.icon_star);
+//                    MonAnYeuThichFragment test = (MonAnYeuThichFragment) MainActivity.instance.getSupportFragmentManager().findFragmentById(R.id.nav_monanyeuthich);
+//                    if (test != null && test.isVisible()) {
+//                        Toast.makeText(context,"Test 1",Toast.LENGTH_SHORT).show();
+//                        holder.imgHinh.setVisibility(View.GONE);
+//                        holder.tvName.setVisibility(View.GONE);
+//                        holder.imageViewStar.setVisibility(View.GONE);
+//                    }
+//                    else {
+//                        //Whatever
+//                        Toast.makeText(context,"Test 2",Toast.LENGTH_SHORT).show();
+//                    }
                 }
             }
         });
@@ -260,7 +310,7 @@ public class MonAnAdapter extends BaseAdapter {
     public ArrayList<MonAnYeuThich> KiemTraMonYeuThich()
     {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
-        arrayListMonAnYeuThich.add(new MonAnYeuThich(7,1));
+        //arrayListMonAnYeuThich.add(new MonAnYeuThich(7,1));
         JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Request.Method.GET, urlGetMonAnYeuThich, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {

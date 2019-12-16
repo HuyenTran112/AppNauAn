@@ -107,7 +107,7 @@ public class QuanLyFragment extends Fragment {
         view=root;
         getActivity().getFragmentManager().popBackStack();
         AnhXa();
-
+        //Kiểm tra tiêu đề nếu là cập nhật thì set lại chế độ cho button CapNhat Them
         if ((tvTieude.getText()).equals("Cập nhật món ăn")) {
             btnCapNhat.setVisibility(View.VISIBLE);
             btnThem.setVisibility(View.GONE);
@@ -119,9 +119,10 @@ public class QuanLyFragment extends Fragment {
 
         loaiMonAnAdapter=new LoaiMonAnAdapter(getActivity(),R.layout.item_loaimonan,arrayListLoaiMonAn);
         spinnerLoaiMonAn.setAdapter(loaiMonAnAdapter);
+        //Lấy thông tin loại món ăn
         GetLoaiMonAn(urlGetLoaiMonAn, 0);
         requestStoragePermission();
-
+        //chọn hình ảnh
         imgHinhAnh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -129,18 +130,9 @@ public class QuanLyFragment extends Fragment {
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent, "Complete action using"), IMAGE_REQUEST_CODE);
-
-//                Intent intent=new Intent(Intent.ACTION_PICK);
-//                intent.setType("image/*");
-//                startActivityForResult(intent,REQUEST_CODE_FOLDER);
-//                ActivityCompat.requestPermissions(
-//                        getActivity(),
-//                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-//                        REQUEST_CODE_FOLDER
-//                );
             }
         });
-
+        //bắt sự kiện cho button thêm
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -155,10 +147,12 @@ public class QuanLyFragment extends Fragment {
                 Bitmap emptyBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
                 Drawable myDrawable = getResources().getDrawable(noimage);
                 Bitmap bitmapfirst      = ((BitmapDrawable) myDrawable).getBitmap();
+                //kiểm tra thông tin dữ liệu đã đầy đủ hay chưa, nếu chưa thì yêu cầu nhập lại thông tin
                 if(TenMonAn.isEmpty() || DsNguyenLieu.isEmpty()||CongThuc.isEmpty()||bitmap.sameAs(emptyBitmap)|bitmap.sameAs(bitmapfirst))
                 {
                     Toast.makeText(getActivity(),"Vui lòng nhập đầy đủ thông tin",Toast.LENGTH_SHORT).show();
                 }
+                //ngược lại thì tiến hành thêm món ăn và set lại text cho các textview
                 else{
                     ThemMonAn();
                     edtCongThuc.setText("");
@@ -168,12 +162,9 @@ public class QuanLyFragment extends Fragment {
                     Toast.makeText(getActivity(),"Thêm món ăn thành công",Toast.LENGTH_SHORT).show();
 
                 }
-
-//                DsMonAnFragment dsMonAnFragment=new DsMonAnFragment();
-//                dsMonAnFragment.setGridView();
-                //Toast.makeText(getActivity(),TenMonAn+" "+DsNguyenLieu+" "+CongThuc+" "+hinhAnh,Toast.LENGTH_SHORT).show();
-            }
+      }
         });
+        //bắt sự kiện cho button Hủy
         btnHuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -181,11 +172,9 @@ public class QuanLyFragment extends Fragment {
                 edtDSNguyenLieu.setText("");
                 edtCongThuc.setText("");
                 imgHinhAnh.setImageResource(noimage);
-
-                //Toast.makeText(getActivity(),"Path: "+getPath(filePath),Toast.LENGTH_SHORT).show();
             }
         });
-
+        //bắt sự kiện chọ button cập nhật
         btnCapNhat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -206,12 +195,6 @@ public class QuanLyFragment extends Fragment {
                 }
                 else{
                     CapNhatMonAn();
-//                    edtCongThuc.setText("");
-//                    edtDSNguyenLieu.setText("");
-//                    edtTenMonAn.setText("");
-//                    imgHinhAnh.setImageResource(R.drawable.noimage);
-                    //Toast.makeText(getActivity(),"Cập nhật món ăn thành công",Toast.LENGTH_SHORT).show();
-
                 }
             }
         });
@@ -262,6 +245,7 @@ public class QuanLyFragment extends Fragment {
         tvTieude = (TextView) view.findViewById(R.id.textView);
     }
 
+    //set lại imgHinh sao khi chọn hình ảnh
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -290,20 +274,21 @@ public class QuanLyFragment extends Fragment {
             String uploadId = UUID.randomUUID().toString();
 
             //Creating a multi part request
+            String manguoidung=String.valueOf(MainActivity.instance.nguoidung.getMaNguoiDung());
             new MultipartUploadRequest(getActivity(), uploadId, URL_INSERT)
                     .addFileToUpload(path, "image") //Adding file
                     .addParameter("tenmonan", TenMonAn)
                     .addParameter("nguyenlieu",DsNguyenLieu)
                     .addParameter("congthuc",CongThuc)
                     .addParameter("maloaimonan",maloaimonan)
-                    .addParameter("manguoidung","1")
+                    .addParameter("manguoidung",manguoidung)
                     .setUtf8Charset()
                     //Adding text parameter to the request
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
                     .startUpload(); //Starting the upload
         } catch (Exception exc) {
-            Toast.makeText(getActivity(), exc.getMessage(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(), exc.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -468,7 +453,7 @@ public class QuanLyFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getActivity(),error.toString(),Toast.LENGTH_LONG).show();
+               // Toast.makeText(getActivity(),error.toString(),Toast.LENGTH_LONG).show();
             }
         });
         requestQueue.add(jsonArrayRequest);

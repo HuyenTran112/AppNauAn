@@ -60,10 +60,11 @@ public class ChiTietMonAn extends AppCompatActivity {
         setContentView(R.layout.activity_chi_tiet_mon_an);
         Intent intent=getIntent();
         arrayMonAn=new ArrayList<>();
+        //lấy dữ liệu được gửi qua từ intent
         monAn= (MonAn) intent.getSerializableExtra("dataMonAn");
         adapter=new MonAnAdapter(ChiTietMonAn.this,R.layout.item_monan,arrayMonAn);
         AnhXa();
-
+        //kiểm tra nếu làm món ăn của người dùng hiện tại thì set lại button cập nhật và button thêm
         if(CheckMonAnCuaToi() == true)
         {
             btnCapNhat.setVisibility(View.VISIBLE);
@@ -77,6 +78,7 @@ public class ChiTietMonAn extends AppCompatActivity {
 
         arrayListLoaiMonAn=new ArrayList<>();
         GetLoaiMonAn(urlGetLoaiMonAn);
+        //set lại giá trị cho các textview theo món ăn được chọn
         txtTenMonAn.setText(txtTenMonAn.getText()+monAn.getTenMonAn());
         txtCongThuc.setText(txtCongThuc.getText()+monAn.getCongThuc());
         txtDsNguyenLieu.setText(txtDsNguyenLieu.getText()+monAn.getDSNguyenLieu());
@@ -176,6 +178,7 @@ public class ChiTietMonAn extends AppCompatActivity {
         }
         return false;
     }
+    //xuất hiện dialog có muốn xóa món ăn hay không
     private void XacNhanXoa(String ten, final int id)
     {
         AlertDialog.Builder dialogXoa=new AlertDialog.Builder(ChiTietMonAn.this);
@@ -194,6 +197,7 @@ public class ChiTietMonAn extends AppCompatActivity {
         });
         dialogXoa.show();
     }
+    //hàm xóa món ăn
     public void DeleteMonAn(final int id)
     {
         RequestQueue requestQueue=Volley.newRequestQueue(this);
@@ -228,6 +232,7 @@ public class ChiTietMonAn extends AppCompatActivity {
         };
         requestQueue.add(stringRequest);
     }
+    //Hàm load lại dữ liệu sau khi xóa món ăn
     private void GetData(String url)
     {
         RequestQueue requestQueue= Volley.newRequestQueue(this);

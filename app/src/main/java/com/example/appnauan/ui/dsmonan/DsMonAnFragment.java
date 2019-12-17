@@ -58,9 +58,6 @@ public class DsMonAnFragment extends Fragment
     GridView gvMonAn;
     ArrayList<MonAn> arrayListMonAn=new ArrayList<>();
 
-    //String urlGetMonAn="http://172.17.28.47:8080/AppNauAn/Database/dbAppNauAn/getMonAn.php";
-    String urlGetMonAn="http://10.80.255.123:8080/dbAppNauAn/getMonAn.php";
-
     SliderLayout sliderLayout ;
     HashMap<String, Integer> HashMapForLocalRes ;
 
@@ -74,7 +71,7 @@ public class DsMonAnFragment extends Fragment
         adapter=new MonAnAdapter(getActivity(),R.layout.item_monan,arrayListMonAn);
         gvMonAn.setAdapter(adapter);
         //gọi hàm lấy danh sách món ăn
-        GetMonAn(urlGetMonAn);
+        GetMonAn(MainActivity.instance.urlGetMonAn);
         sliderLayout = (SliderLayout)root.findViewById(R.id.slider);
         AddImageUrlFormLocalRes();
 

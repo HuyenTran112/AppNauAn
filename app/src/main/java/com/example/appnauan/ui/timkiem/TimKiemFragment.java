@@ -52,8 +52,6 @@ public class TimKiemFragment extends Fragment {
     EditText etkeySearch;
 
     private TimKiemViewModel timKiemViewModel;
-    private static final String URL_SEARCH = "http://172.17.20.139:8080/AppNauAn/Database/dbappnauan/search_monan.php";
-
     MonAnAdapter adapter;
     ArrayList<MonAn> arrayListSearchMonAn = new ArrayList<>();
 
@@ -96,7 +94,7 @@ public class TimKiemFragment extends Fragment {
         else {
 
             final RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SEARCH, new Response.Listener<String>() {
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, MainActivity.instance.URL_SEARCH, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
 //                Toast.makeText(getActivity(),response,Toast.LENGTH_LONG).show();

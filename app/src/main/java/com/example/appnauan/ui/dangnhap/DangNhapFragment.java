@@ -64,12 +64,6 @@ public class DangNhapFragment extends Fragment {
     Button btnSignUp, btnLogin;
     public View view;
     EditText edtEmail, edtMatKhau;
-
-    //private static final String URL_LOGIN = "http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/login.php";
-    //String urlGetUser = "http://172.17.28.47:8080/AppNauAn/Database/dbAppNauAn/getUser.php";
-    private static final String URL_LOGIN = "http://10.80.255.123:8080/dbappnauan/login.php";
-   String urlGetUser = "http://10.80.255.123:8080/dbAppNauAn/getUser.php";
-
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
     ArrayList<NguoiDung> arrayListNguoiDung=new ArrayList<>();
@@ -83,7 +77,7 @@ public class DangNhapFragment extends Fragment {
         view = root;
         AnhXa();
 
-       GetNguoiDung(urlGetUser);
+       GetNguoiDung(MainActivity.instance.urlGetUser);
         //bắt sự kiện cho button Signup
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +96,7 @@ public class DangNhapFragment extends Fragment {
             public void onClick(View view) {
                 String Email = edtEmail.getText().toString().trim();
                 String MatKhau=edtMatKhau.getText().toString().trim();
-                Login(URL_LOGIN);
+                Login(MainActivity.instance.URL_LOGIN);
                 //Toast.makeText(getActivity(),Email+" "+MatKhau,Toast.LENGTH_SHORT).show();
             }
         });

@@ -40,19 +40,13 @@ public class MonAnCuaToiFragment extends Fragment {
     GridView gvMonAnCuaToi;
     ArrayList<MonAn> arrayListMonAn=new ArrayList<>();
     ArrayList<MonAn> arrayListMonAnCuaToi=new ArrayList<>();
-
-    //String urlGetMonAn="http://172.17.28.47:8080/AppNauAn/Database/dbAppNauAn/getMonAn.php";
-    String urlGetMonAn="http://10.80.255.123:8080/dbAppNauAn/getMonAn.php";
-
-
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         slideshowViewModel =
                 ViewModelProviders.of(this).get(MonAnCuaToiViewModel.class);
         View root = inflater.inflate(R.layout.fragment_monancuatoi, container, false);
         gvMonAnCuaToi=(GridView) root.findViewById(R.id.gridviewMonAnCuaToi);
-        GetMonAn(urlGetMonAn);
+        GetMonAn(MainActivity.instance.urlGetMonAn);
         adapter=new MonAnAdapter(getActivity(),R.layout.item_monan,arrayListMonAnCuaToi);
         gvMonAnCuaToi.setAdapter(adapter);
         return root;

@@ -83,15 +83,6 @@ public class QuanLyFragment extends Fragment {
     public  static View view;
     private static final int IMAGE_REQUEST_CODE = 3;
     final int REQUEST_CODE_FOLDER=456;
-
-   // private static final String URL_INSERT = "http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/insert_monan.php";
-    //private static final String URL_UPDATE = "http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/update_monan.php";
-    //private static final String URL_UPDATE1 = "http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/upd_monan.php";
-    private static final String URL_UPDATE = "http://172.17.20.139:8080/AppNauAn/Database/dbappnauan/update_monan.php";
-   // String urlGetLoaiMonAn="http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/getLoaiMonAn.php";
-   private static final String URL_INSERT = "http://10.80.255.123:8080/dbappnauan/insert_monan.php";
-    String urlGetLoaiMonAn="http://10.80.255.123:8080/dbappnauan/getLoaiMonAn.php";
-
     private Uri filePath;
     private int counter=0;
     private Bitmap bitmap;
@@ -128,7 +119,7 @@ public class QuanLyFragment extends Fragment {
         loaiMonAnAdapter=new LoaiMonAnAdapter(getActivity(),R.layout.item_loaimonan,arrayListLoaiMonAn);
         spinnerLoaiMonAn.setAdapter(loaiMonAnAdapter);
         //Lấy thông tin loại món ăn
-        GetLoaiMonAn(urlGetLoaiMonAn, 0);
+        GetLoaiMonAn(MainActivity.instance.urlGetLoaiMonAn, 0);
         requestStoragePermission();
         //chọn hình ảnh
         imgHinhAnh.setOnClickListener(new View.OnClickListener() {
@@ -213,7 +204,7 @@ public class QuanLyFragment extends Fragment {
             edtTenMonAn.setText(bundle.getString("tenmonan"));
             edtDSNguyenLieu.setText(bundle.getString("nguyenlieu"));
             edtCongThuc.setText(bundle.getString("congthuc"));
-            GetLoaiMonAn(urlGetLoaiMonAn, bundle.getInt("maloaimonan"));
+            GetLoaiMonAn(MainActivity.instance.urlGetLoaiMonAn, bundle.getInt("maloaimonan"));
             Picasso.with(getActivity()).load(bundle.getString("hinhanh")).into(imgHinhAnh);
 
             if ((tvTieude.getText()).equals("Cập nhật món ăn")) {
@@ -283,7 +274,7 @@ public class QuanLyFragment extends Fragment {
 
             //Creating a multi part request
             String manguoidung=String.valueOf(MainActivity.instance.nguoidung.getMaNguoiDung());
-            new MultipartUploadRequest(getActivity(), uploadId, URL_INSERT)
+            new MultipartUploadRequest(getActivity(), uploadId, MainActivity.instance.URL_INSERT)
                     .addFileToUpload(path, "image") //Adding file
                     .addParameter("tenmonan", TenMonAn)
                     .addParameter("nguyenlieu",DsNguyenLieu)
@@ -326,25 +317,15 @@ public class QuanLyFragment extends Fragment {
             String uploadId = UUID.randomUUID().toString();
             if (path.equals("http")) {
                 RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_UPDATE, new Response.Listener<String>() {
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, MainActivity.instance.URL_UPDATE1, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         if(response.trim().equals("success")) {
                             Toast.makeText(getActivity(), "Cập nhật món ăn thành công", Toast.LENGTH_SHORT).show();
-                            edtCongThuc.setText("");
-                            edtDSNguyenLieu.setText("");
-                            edtTenMonAn.setText("");
-
-                            imgHinhAnh.setImageResource(R.drawable.noimage);
-
-//                            monAnAdapter.notifyDataSetChanged();
-//
-//                            DsMonAnFragment dsMonAnFragment = new DsMonAnFragment();
-//                            FragmentManager fm = getFragmentManager();
-//                            FragmentTransaction fragmentTransaction = fm.beginTransaction();
-//                            fragmentTransaction.add(R.id.activityCTMonAn, dsMonAnFragment);
-//                            fragmentTransaction.commit();
-
+//                            edtCongThuc.setText("");
+//                            edtDSNguyenLieu.setText("");
+//                            edtTenMonAn.setText("");
+//                            imgHinhAnh.setImageResource(R.drawable.noimage);
                         }
                         else
                             Toast.makeText(getActivity(),"Lỗi cập nhật! http",Toast.LENGTH_SHORT).show();
@@ -375,7 +356,7 @@ public class QuanLyFragment extends Fragment {
                 //Creating a multi part request
 
                 try {
-                    new MultipartUploadRequest(getActivity(), uploadId, URL_UPDATE)
+                    new MultipartUploadRequest(getActivity(), uploadId, MainActivity.instance.URL_UPDATE)
                             .addParameter("strpath", "upload")
                             .addFileToUpload(path, "image") //Adding file
                             .addParameter("mamonan", MaMonAn.toString())

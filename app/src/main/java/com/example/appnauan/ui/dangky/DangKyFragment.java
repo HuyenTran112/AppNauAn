@@ -55,9 +55,6 @@ public class DangKyFragment extends Fragment {
     private Bitmap bitmap;
     final int IMAGE_REQUEST_CODE=123;
     final int REQUEST_CODE_FOLDER=456;
-    //private static final String URL_INSERT_USER = "http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/insertUser.php";
-    private static final String URL_INSERT_USER = "http://10.80.255.123:8080/dbappnauan/insertUser.php";
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         dangkyViewModel =
@@ -199,7 +196,7 @@ public class DangKyFragment extends Fragment {
             String uploadId = UUID.randomUUID().toString();
 
             //Creating a multi part request
-            new MultipartUploadRequest(getActivity(), uploadId, URL_INSERT_USER)
+            new MultipartUploadRequest(getActivity(), uploadId, MainActivity.instance.URL_INSERT_USER)
                     .addFileToUpload(path, "image") //Adding file
                     .addParameter("email", Email)
                     .addParameter("tenhienthi",TenHienThi)

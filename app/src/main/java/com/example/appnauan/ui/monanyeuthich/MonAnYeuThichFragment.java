@@ -39,7 +39,6 @@ public class MonAnYeuThichFragment extends Fragment {
     MonAnAdapter adapter;
     GridView gvMonAnYeuThich;
     ArrayList<MonAn> arrayListMonAn;
-    public String urlGetMonAnYeuThich="http://10.80.255.123:8080/dbAppNauAn/LayDSMonAnYeuThich.php";
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         galleryViewModel =
@@ -48,7 +47,7 @@ public class MonAnYeuThichFragment extends Fragment {
         arrayListMonAn=new ArrayList<>();
         gvMonAnYeuThich=(GridView) root.findViewById(R.id.gridviewMonAnYeuThich);
         adapter=new MonAnAdapter(getActivity(),R.layout.item_monan,arrayListMonAn);
-        GetMonAn(urlGetMonAnYeuThich);
+        GetMonAn(MainActivity.instance.urlGetDsMonAnYeuThich);
         gvMonAnYeuThich.setAdapter(adapter);
         return root;
     }
@@ -63,16 +62,19 @@ public class MonAnYeuThichFragment extends Fragment {
                 {
                     try {
                         JSONObject object=response.getJSONObject(i);
-                        arrayListMonAn.add(new MonAn(
-                                object.getInt("mamonan"),
-                                object.getString("tenmonan"),
-                                object.getString("nguyenlieu"),
-                                object.getString("congthuc"),
-                                object.getString("hinhanh"),
-                                object.getInt("maloaimonan"),
-                                object.getInt("manguoidung")
+                        if( MainActivity.instance.nguoidung.getMaNguoiDung()==object.getInt("manguoidung"))
+                        {
+                            arrayListMonAn.add(new MonAn(
+                                    object.getInt("mamonan"),
+                                    object.getString("tenmonan"),
+                                    object.getString("nguyenlieu"),
+                                    object.getString("congthuc"),
+                                    object.getString("hinhanh"),
+                                    object.getInt("maloaimonan"),
+                                    object.getInt("manguoidung")
 
-                        ));
+                            ));
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

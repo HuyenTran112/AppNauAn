@@ -52,9 +52,6 @@ public class MonAnAdapter extends BaseAdapter {
     private List<MonAn>ListMonAn;
     ArrayList<MonAnYeuThich> arrayListMonAnYeuThich=new ArrayList<>();
     ViewHolder holder_;
-    String urlAddMonAnYeuThich="http://10.80.255.123:8080/dbappnauan/AddMonAnYeuThich.php";
-    String urlDeleteMonAnYeuThich="http://10.80.255.123:8080/dbappnauan/DeleteMonAnYeuThich.php";
-    String urlGetMonAnYeuThich="http://10.80.255.123:8080/dbappnauan/GetMonAnYeuThich.php";
     public MonAnAdapter(Context context, int layout, List<MonAn> listMonAn) {
         this.context = context;
         this.layout = layout;
@@ -110,10 +107,11 @@ public class MonAnAdapter extends BaseAdapter {
 
         if(MainActivity.instance.KiemTraDangNhap())
         {
+            holder.imageViewStar.setImageResource(R.drawable.icon_star);
             holder.imageViewStar.setVisibility(View.VISIBLE);
             RequestQueue requestQueue= Volley.newRequestQueue(context);
             //arrayListMonAnYeuThich.add(new MonAnYeuThich(7,1));
-            JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Request.Method.GET, urlGetMonAnYeuThich, null, new Response.Listener<JSONArray>() {
+            JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Request.Method.GET, MainActivity.instance.urlGetMonAnYeuThich, null, new Response.Listener<JSONArray>() {
                 @Override
                 public void onResponse(JSONArray response) {
                     arrayListMonAnYeuThich.clear();
@@ -126,13 +124,23 @@ public class MonAnAdapter extends BaseAdapter {
                                     object.getInt("manguoidung")
 
                             ));
-                           for(MonAnYeuThich monAnYeuThich:arrayListMonAnYeuThich)
-                           {
-                               if(monan.getMaMonAn()==monAnYeuThich.getMaMonAn() &&MainActivity.instance.nguoidung.getMaNguoiDung()==monAnYeuThich.getMaNguoiDung())
-                               {
-                                   holder.imageViewStar.setImageResource(R.drawable.icon_star_check);
-                               }
-                           }
+                            //Toast.makeText(context,"Món ăn"+ object.getInt("mamonan")+" "+object.getInt("manguoidung"),Toast.LENGTH_SHORT).show();
+                            if(monan.getMaMonAn()==object.getInt("mamonan") && MainActivity.instance.nguoidung.getMaNguoiDung()==object.getInt("manguoidung"))
+                            {
+                             //   Toast.makeText(context,"Món ăn"+ object.getInt("mamonan")+" "+object.getInt("manguoidung"),Toast.LENGTH_SHORT).show();
+                                holder.imageViewStar.setImageResource(R.drawable.icon_star_check);
+                            }
+//
+                                //                               {
+//                                   holder.imageViewStar.setImageResource(R.drawable.icon_star_check);
+//                               }
+//                           for(MonAnYeuThich monAnYeuThich:arrayListMonAnYeuThich)
+//                           {
+//                               if(monan.getMaMonAn()==monAnYeuThich.getMaMonAn() && MainActivity.instance.nguoidung.getMaNguoiDung()==monAnYeuThich.getMaNguoiDung())
+//                               {
+//                                   holder.imageViewStar.setImageResource(R.drawable.icon_star_check);
+//                               }
+//                           }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -229,7 +237,7 @@ public class MonAnAdapter extends BaseAdapter {
     public void AddMonAnYeuThich(final int id)
     {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
-        StringRequest stringRequest=new StringRequest(Request.Method.POST, urlAddMonAnYeuThich, new Response.Listener<String>() {
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, MainActivity.instance.urlAddMonAnYeuThich, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if(response.trim().equals("success"))
@@ -280,7 +288,7 @@ public class MonAnAdapter extends BaseAdapter {
     public void DeleteMonAnYeuThich(final int id)
     {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
-        StringRequest stringRequest=new StringRequest(Request.Method.POST, urlDeleteMonAnYeuThich, new Response.Listener<String>() {
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, MainActivity.instance.urlDeleteMonAnYeuThich, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if(response.trim().equals("success"))
@@ -311,7 +319,7 @@ public class MonAnAdapter extends BaseAdapter {
     {
         RequestQueue requestQueue= Volley.newRequestQueue(context);
         //arrayListMonAnYeuThich.add(new MonAnYeuThich(7,1));
-        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Request.Method.GET, urlGetMonAnYeuThich, null, new Response.Listener<JSONArray>() {
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Request.Method.GET, MainActivity.instance.urlGetMonAnYeuThich, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 //arrayListMonAnYeuThich.clear();

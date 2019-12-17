@@ -83,7 +83,8 @@ public class DangNhapFragment extends Fragment {
         view = root;
         AnhXa();
 
-        GetNguoiDung(urlGetUser);
+       GetNguoiDung(urlGetUser);
+        //bắt sự kiện cho button Signup
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,6 +96,7 @@ public class DangNhapFragment extends Fragment {
 
             }
         });
+        //bắt sự kiện cho button login
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,7 +109,6 @@ public class DangNhapFragment extends Fragment {
         return root;
 
     }
-
     private void AnhXa() {
         btnSignUp = (Button) view.findViewById(R.id.btn_sign_up);
         btnLogin = (Button) view.findViewById(R.id.buttonSingIn);
@@ -122,20 +123,25 @@ public class DangNhapFragment extends Fragment {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                //nếu kết quã json trả về là success thì đăng nhập thành công
                 if (response.trim().equals("success")) {
                     Toast.makeText(getActivity(), "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
                     getUser();
                     //Toast.makeText(getActivity(),userCurrent.getTenHienThi().toString(),Toast.LENGTH_SHORT).show();
                     edtEmail.setText("");
                     edtMatKhau.setText("");
+                    //khi đăng nhập thành công thì xuất thông báo sau đó chuyển sang fragment danh sách món ăn
                     DsMonAnFragment nextFrag = new DsMonAnFragment();
                     getActivity().getSupportFragmentManager().beginTransaction()
                             .replace(R.id.nav_host_fragment, nextFrag, "findThisFragment")
                             .addToBackStack(null)
                             .commit();
-
+                    //khi người dùng đăng nhập thành công lúc này các menu như
+                    //danh sách món ăn của tôi, món ăn yêu thích được set về true
                     MainActivity.instance.SetEnableMenuItem(true);
-                } else {
+                }
+                //ngược lại xuất thông báo sai thông tin đăng nhập
+                else {
                     Toast.makeText(getActivity(), "Sai thông tin đăng nhập", Toast.LENGTH_SHORT).show();
                 }
 
@@ -148,6 +154,7 @@ public class DangNhapFragment extends Fragment {
             }
         }) {
             @Override
+            //đây là hàm dùng để truyền giá trị xuống database để kiểm tra thông tin đăng nhập
             protected Map<String, String> getParams() throws AuthFailureError {
 
                 Map<String, String> params = new HashMap<>();

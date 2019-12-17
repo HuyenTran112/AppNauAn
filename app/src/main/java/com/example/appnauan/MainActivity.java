@@ -56,8 +56,10 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     String User;
     String noidung="";
+
     String urlGetLoaiMonAn="http://172.17.20.139:8080/AppNauAn/Database/dbappnauan/getLoaiMonAn.php";
 //    String urlGetLoaiMonAn="http://10.80.255.137:8080/dbappnauan/getLoaiMonAn.php";
+
     public NguoiDung nguoidung=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

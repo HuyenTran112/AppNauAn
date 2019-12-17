@@ -38,6 +38,8 @@
             android:layout_height="50dp"
             android:layout_alignRight="@id/tvName"
             android:layout_alignParentRight="true"
-            android:id="@+id/imageviewPromotion"/>
+            android:id="@+id/imageviewStar"
+            android:src ="@drawable/icon_star"/>
+
     </RelativeLayout>
 </RelativeLayout>

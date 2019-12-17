@@ -66,6 +66,7 @@ public class DangKyFragment extends Fragment {
         view=root;
         AnhXa();
         requestStoragePermission();
+        //Bắt sự kiện chọn hình ảnh
         imgHinhAnh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,10 +77,11 @@ public class DangKyFragment extends Fragment {
             }
         });
 
-
+        //Đăng ký
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //lấy thông tin đăng ký
                 String tenhienthi=edtTenHienThi.getText().toString().trim();
                 String email=edtEmail.getText().toString().trim();
                 String matkhau=edtPassWord.getText().toString().trim();
@@ -88,10 +90,12 @@ public class DangKyFragment extends Fragment {
                 ByteArrayOutputStream byteArray=new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.PNG,100,byteArray);
                 Bitmap emptyBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
+                //Kiểm tra dữ liệu đăng ký nếu không đầy đủ thì yêu cầu nhập đầy đủ thông tin
                 if(tenhienthi.isEmpty() || email.isEmpty() || matkhau.isEmpty() || bitmap.sameAs(emptyBitmap))
                 {
                     Toast.makeText(getActivity(),"Vui lòng nhập đầy đủ thông tin",Toast.LENGTH_SHORT).show();
                 }
+                //ngược lại tiến hành đăng ký cho người dùng
                 else{
                     ThemUser();
                     edtEmail.setText("");
@@ -112,6 +116,7 @@ public class DangKyFragment extends Fragment {
                 return root;
 
     }
+    //Set lại imgHinh khi chọn hình
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK && data != null && data.getData() != null) {

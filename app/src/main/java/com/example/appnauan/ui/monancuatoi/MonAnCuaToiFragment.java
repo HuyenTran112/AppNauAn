@@ -53,7 +53,6 @@ public class MonAnCuaToiFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_monancuatoi, container, false);
         gvMonAnCuaToi=(GridView) root.findViewById(R.id.gridviewMonAnCuaToi);
         GetMonAn(urlGetMonAn);
-        //getMonAnCuaToi();
         adapter=new MonAnAdapter(getActivity(),R.layout.item_monan,arrayListMonAnCuaToi);
         gvMonAnCuaToi.setAdapter(adapter);
         return root;
@@ -68,6 +67,7 @@ public class MonAnCuaToiFragment extends Fragment {
                 for(int i=0;i<response.length();i++)
                 {
                     try {
+                        //lấy thông tin của món ăn
                         JSONObject object=response.getJSONObject(i);
                         MonAn monAn = new MonAn();
                         monAn.setMaMonAn(object.getInt("mamonan"));
@@ -78,6 +78,7 @@ public class MonAnCuaToiFragment extends Fragment {
                         monAn.setMaNguoiDung(object.getInt("manguoidung"));
                         monAn.setMaLoaiMonAn(object.getInt("manguoidung"));
                         arrayListMonAn.add(monAn);
+                        //kiểm tra món ăn có phải của người dùng hiện tại không nếu phải thì add vào ds món ăn của tôi
                         if(MainActivity.instance.nguoidung!=null){
                             if(monAn.getMaNguoiDung()==MainActivity.instance.nguoidung.getMaNguoiDung())
                             {
@@ -85,16 +86,6 @@ public class MonAnCuaToiFragment extends Fragment {
                             }
                         }
 
-//                        arrayListMonAn.add(new MonAn(
-//                                object.getInt("mamonan"),
-//                                object.getString("tenmonan"),
-//                                object.getString("nguyenlieu"),
-//                                object.getString("congthuc"),
-//                                object.getString("hinhanh"),
-//                                object.getInt("maloaimonan"),
-//                                object.getInt("manguoidung")
-//
-//                        ));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -109,16 +100,5 @@ public class MonAnCuaToiFragment extends Fragment {
         });
         requestQueue.add(jsonArrayRequest);
     }
-    //Lấy thông tin món ăn của user đã thêm vào
-    public void getMonAnCuaToi()
-    {
-        for(MonAn monan: arrayListMonAn)
-        {
-            //if(MainActivity.instance.nguoidung.getMaNguoiDung()== monan.getMaNguoiDung())
-            {
-                arrayListMonAnCuaToi.add(monan);
-                Toast.makeText(getActivity(),monan.getTenMonAn().toString(),Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
+
 }

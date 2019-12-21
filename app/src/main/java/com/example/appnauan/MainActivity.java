@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     String User;
     String noidung="";
-    String urlSendUser = "http://10.80.255.137:8080/dbAppNauAn/sendUser.php";
-    String urlGetUser = "http://10.80.255.137:8080/dbAppNauAn/getUser.php";
+    String urlSendUser = "http://192.168.2.111/dbAppNauAn/sendUser.php";
+    String urlGetUser = "http://192.168.2.111/dbAppNauAn/getUser.php";
     public NguoiDung nguoidung=null;
 
     @Override

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="15dp"
 
     android:background="@drawable/background1"
     tools:context=".MainActivity">
@@ -25,13 +24,14 @@
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:background="@color/green"
                 android:text="Thêm món ăn"
-                android:textColor="#0040FF"
+                android:textColor="#ffffff"
                 android:textSize="30dp"
                 android:textStyle="bold"
+                android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -95,6 +95,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Thêm"
                 app:layout_constraintStart_toStartOf="parent"
+                android:background="@color/green"
                 app:layout_constraintTop_toBottomOf="@+id/imageViewHinhMonAn" />
 
             <Button
@@ -104,6 +105,7 @@
                 android:layout_marginStart="96dp"
                 android:layout_marginTop="20dp"
                 android:text="Hủy"
+                android:background="@color/green"
                 app:layout_constraintLeft_toRightOf="@id/buttonAddMonAn"
                 app:layout_constraintTop_toBottomOf="@+id/imageViewHinhMonAn" />
 

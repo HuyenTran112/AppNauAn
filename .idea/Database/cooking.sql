@@ -111,12 +111,12 @@ CREATE TABLE `monan` (
 --
 
 INSERT INTO `monan` (`mamonan`, `tenmonan`, `nguyenlieu`, `congthuc`, `hinhanh`, `maloaimonan`, `manguoidung`) VALUES
-(6, 'Lẩu', 'Bún, rau, thịt, cá', 'Nấu', 'http://192.168.2.111/dbappnauan/imagemonan/6.jpg', 5, 1),
-(7, 'Thịt bò xào rau muống', 'Thịt bò, rau muống', 'Xào', 'http://192.168.2.111/dbappnauan/imagemonan/7.jpg', 1, 1),
-(8, 'Lẩu thái chua cay', 'Thịt, cá, rau', 'Nấu', 'http://192.168.2.111/dbappnauan/imagemonan/8.jpg', 1, 1),
-(9, 'Bánh xèo', 'Bột', 'Chiên', 'http://192.168.2.111/dbappnauan/imagemonan/9.jpg', 1, 1),
-(10, 'Cải xào', 'Cải, dầu', 'Xào', 'http://192.168.2.111/dbappnauan/imagemonan/10.png', 1, 1),
-(15, 'Thịt kho', 'Thịt, trứng, nước dừa', 'Kho', 'http://192.168.2.111/dbappnauan/imagemonan/11.jpg', 3, 1);
+(6, 'Lẩu', 'Bún, rau, thịt, cá', 'Nấu', 'http://10.80.255.137:8080/dbappnauan/imagemonan/6.jpg', 5, 1),
+(7, 'Thịt bò xào rau muống', 'Thịt bò, rau muống', 'Xào', 'http://10.80.255.137:8080/dbappnauan/imagemonan/7.jpg', 1, 1),
+(8, 'Lẩu thái chua cay', 'Thịt, cá, rau', 'Nấu', 'http://10.80.255.137:8080/dbappnauan/imagemonan/8.jpg', 1, 1),
+(9, 'Bánh xèo', 'Bột', 'Chiên', 'http://10.80.255.137:8080/dbappnauan/imagemonan/9.jpg', 1, 1),
+(10, 'Cải xào', 'Cải, dầu', 'Xào', 'http://10.80.255.137:8080/dbappnauan/imagemonan/10.png', 1, 1),
+(15, 'Thịt kho', 'Thịt, trứng, nước dừa', 'Kho', 'http://10.80.255.137:8080/dbappnauan/imagemonan/11.jpg', 3, 1);
 
 -- --------------------------------------------------------
 

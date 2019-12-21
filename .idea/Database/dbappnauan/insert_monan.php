@@ -1,8 +1,8 @@
 <?php
 require 'dbConnect.php';
 global $connection;
-$upload_path = 'imageuser/'; //this is our upload folder
-$server_ip = "192.168.2.111"; //Getting the server ip
+$upload_path = 'imagemonan/'; //this is our upload folder
+$server_ip = "10.80.255.137:8080"; //Getting the server ip
 $upload_url = 'http://'.$server_ip.'/dbappnauan/'.$upload_path;
 //response array
 $response = array();
@@ -11,12 +11,14 @@ $response = array();
 if($_SERVER['REQUEST_METHOD']=='POST'){
  
     //checking the required parameters from the request
-    if(isset($_POST['email']) and isset($_POST['tenhienthi']) and isset($_POST['matkhau']) and isset($_POST['maloainguoidung']))
+    if(isset($_POST['tenmonan']) and isset($_POST['nguyenlieu']) and isset($_POST['congthuc']) and isset($_POST['maloaimonan']) and isset($_POST['manguoidung']))
     {
-        $email=$_POST['email'];
-        $tenhienthi=$_POST['tenhienthi'];
-        $matkhau=$_POST['matkhau'];
-        $maloainguoidung=$_POST['maloainguoidung'];
+         
+        $tenmonan = $_POST['tenmonan'];
+        $nguyenlieu=$_POST['nguyenlieu'];
+        $congthuc=$_POST['congthuc'];
+        $maloaimonan=$_POST['maloaimonan'];
+        $manguoidung=$_POST['manguoidung'];
         $fileinfo = pathinfo($_FILES['image']['name']);//getting file info from the request
         $extension = $fileinfo['extension']; //getting the file extension
         $file_url = $upload_url . getFileName() . '.' . $extension; //file url to store in the database
@@ -29,16 +31,17 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             //adding the path and name to database
             // $sql = "INSERT INTO monan(tenmonan,nguyenlieu , congthuc,hinhanh,maloaimonan,manguoidung) ";
             // $sql .= "VALUES ('{$tenmonan}', '{$nguyenlieu}', '{$congthuc}','{$file_url},'{$maloaimonan}','{$manguoidung}');";
-             $sql = "INSERT INTO nguoidung(manguoidung, email, tenhienthi,matkhau,maloainguoidung, hinhanh) VALUES (null, '$email','$tenhienthi','$matkhau','$maloainguoidung','$file_url')";
+             $sql = "INSERT INTO monan(mamonan, tenmonan, nguyenlieu,congthuc,hinhanh,maloaimonan,manguoidung) VALUES (null, '$tenmonan', '$nguyenlieu','$congthuc','$file_url','$maloaimonan','$manguoidung')";
     
             if(mysqli_query($connection,$sql)){
                 //filling response array with values
                 $response['error'] = false;
-                $response['email'] = $email;
-                $response['tenhienthi'] = $tenhienthi;
-                $response['matkhau'] = $matkhau;
+                $response['tenmonan'] = $tenmonan;
+                $response['nguyenlieu'] = $nguyenlieu;
+                $response['congthuc'] = $congthuc;
                 $response['hinhanh']=$file_url;
-                $response['maloainguoidung']=$maloainguoidung;
+                $response['maloaimonan']=$maloaimonan;
+                $response['manguoidung']=$manguoidung;
             }
             //if some error occurred
         }catch(Exception $e){
@@ -63,13 +66,13 @@ so this method will return a file name for the image to be uploaded
 function getFileName(){
     global $connection;
      
-    $sql = "SELECT max(manguoidung) as manguoidung FROM nguoidung";
+    $sql = "SELECT max(mamonan) as mamonan FROM monan";
     $result = mysqli_fetch_array(mysqli_query($connection, $sql));
  
-    if($result['manguoidung']== null)
+    if($result['mamonan']== null)
         return 1;
     else
-        return ++$result['manguoidung'];
+        return ++$result['mamonan'];
      
     mysqli_close($connection);
 }

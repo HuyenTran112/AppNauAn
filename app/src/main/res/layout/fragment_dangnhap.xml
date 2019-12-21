@@ -4,21 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background1"
+    android:background="@drawable/mochi2"
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Sign in"
         android:textStyle="bold"
-        android:textSize="24dp"
+        android:textSize="25dp"
+        android:textAlignment="center"
+        android:background="@color/green"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="20dp"
         android:textAllCaps="true"
-        android:textColor="#1E39E9"
+        android:textColor="#ffffff"
         android:id="@+id/tvSignup"
         />
     <EditText
@@ -30,7 +31,9 @@
         android:ems="10"
         android:hint="name@gmail.com"
         android:inputType="textPersonName"
-        android:textColor="#1E39E9"
+        android:textColor="#000000"
+        android:background="#FFEC8B"
+        android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/tv_username"
         app:layout_constraintTop_toBottomOf="@+id/tvSignup" />
 
@@ -42,20 +45,23 @@
         android:ems="10"
         android:hint="*******"
         android:inputType="textPassword"
-        android:textColor="#1E39E9"
+        android:textColor="#000000"
+        android:background="#FFEC8B"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toEndOf="@+id/tv_password"
         app:layout_constraintTop_toBottomOf="@+id/et_email" />
 
     <TextView
         android:id="@+id/tv_username"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="28dp"
         android:text="@string/username"
-        android:textColor="#1E39E9"
-        android:textSize="20dp"
         android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSignup" />
 
@@ -68,7 +74,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/password"
-        android:textColor="#1E39E9"
+        android:textColor="#ffffff"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,12 +84,15 @@
         android:id="@+id/buttonSingIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="16dp"
         android:text="Sign in"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_password" />
+        app:layout_constraintTop_toBottomOf="@+id/et_password"
+        android:background="@color/green"
+        android:textSize="20dp"
+        android:textColor="#ffffff"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -92,6 +101,9 @@
         app:layout_constraintBottom_toTopOf="@id/btn_sign_in_facebook"
         app:layout_constraintStart_toEndOf="parent"
         android:layout_marginBottom="5dp"
+        android:background="@color/green"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
         />
     <Button
         android:layout_width="match_parent"
@@ -101,6 +113,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/btn_sign_up"
         android:layout_marginBottom="5dp"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:background="@color/green"
         />
 
 

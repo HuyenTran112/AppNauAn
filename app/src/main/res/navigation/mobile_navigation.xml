@@ -10,6 +10,11 @@
         android:name="com.example.appnauan.ui.dsmonan.DsMonAnFragment"
         android:label="@string/menu_dsmonan"
         tools:layout="@layout/fragment_dsmonan" />
+    <fragment
+        android:id="@+id/nav_dsloaimoan"
+        android:name="com.example.appnauan.ui.loaimonan.LoaiMonAnFragment"
+        android:label="Loại món ăn"
+        tools:layout="@layout/fragment_loai_mon_an" />
 
     <fragment
         android:id="@+id/nav_monanyeuthich"
@@ -36,7 +41,7 @@
 
     <fragment
         android:id="@+id/nav_send"
-        android:name="com.example.appnauan.ui.send.SendFragment"
+        android:name="com.example.appnauan.ui.loaimonan.LoaiMonAnFragment"
         android:label="@string/menu_dangnhap"
         tools:layout="@layout/fragment_send" />
     <fragment
@@ -44,16 +49,6 @@
         android:name="com.example.appnauan.ui.timkiem.TimKiemFragment"
         android:label="Tìm kiếm"
         tools:layout="@layout/fragment_timkiem"/>
-
-    <fragment
-        android:id="@+id/nav_monxao"
-        android:name="com.example.appnauan.ui.monancuatoi.MonAnCuaToiFragment"
-        android:label="Món xào"
-        tools:layout="@layout/fragment_monancuatoi" />
-    <fragment
-        android:id="@+id/nav_moncanh"
-        android:name="com.example.appnauan.ui.monancuatoi.MonAnCuaToiFragment"
-        android:label="Món canh" />
 
 
 </navigation>

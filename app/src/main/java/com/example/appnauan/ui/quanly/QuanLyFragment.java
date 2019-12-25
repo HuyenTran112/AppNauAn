@@ -71,6 +71,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
+import static com.example.appnauan.R.drawable.avatar;
 import static com.example.appnauan.R.drawable.noimage;
 
 public class QuanLyFragment extends Fragment {
@@ -181,14 +182,14 @@ public class QuanLyFragment extends Fragment {
                 String TenMonAn=edtTenMonAn.getText().toString().trim();
                 String DsNguyenLieu=edtDSNguyenLieu.getText().toString().trim();
                 String CongThuc=edtCongThuc.getText().toString().trim();
-
                 BitmapDrawable bitmapDrawable= (BitmapDrawable) imgHinhAnh.getDrawable();
                 Bitmap bitmap=bitmapDrawable.getBitmap();
                 ByteArrayOutputStream byteArray=new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.PNG,100,byteArray);
-
                 Bitmap emptyBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
-                if(TenMonAn.isEmpty() || DsNguyenLieu.isEmpty()||CongThuc.isEmpty()||bitmap.sameAs(emptyBitmap))
+                Drawable myDrawable = getResources().getDrawable(noimage);
+                Bitmap bitmapfirst      = ((BitmapDrawable) myDrawable).getBitmap();
+                if(TenMonAn.isEmpty() || DsNguyenLieu.isEmpty()||CongThuc.isEmpty()||bitmap.sameAs(emptyBitmap)||bitmap.sameAs(bitmapfirst))
                 {
                     Toast.makeText(getActivity(),"Vui lòng nhập đầy đủ thông tin",Toast.LENGTH_SHORT).show();
                 }

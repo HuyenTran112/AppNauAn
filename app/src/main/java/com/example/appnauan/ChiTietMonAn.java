@@ -46,7 +46,7 @@ public class ChiTietMonAn extends AppCompatActivity {
     ArrayList<LoaiMonAn> arrayListLoaiMonAn;
 
     //String urlGetLoaiMonAn="http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/getLoaiMonAn.php";
-    String urlGetLoaiMonAn="http://10.80.255.123:8080/dbappnauan/getLoaiMonAn.php";
+    //String urlGetLoaiMonAn="http://10.80.255.123:8080/dbappnauan/getLoaiMonAn.php";
     String urlDelete="http://10.80.255.123:8080/dbappnauan/deleteMonAn.php";
     String urlgetData="http://10.80.255.123:8080/dbappnauan/getMonAn.php";
 
@@ -79,7 +79,7 @@ public class ChiTietMonAn extends AppCompatActivity {
         }
 
         arrayListLoaiMonAn=new ArrayList<>();
-        GetLoaiMonAn(urlGetLoaiMonAn);
+        GetLoaiMonAn(MainActivity.instance.urlGetLoaiMonAn);
         //set lại giá trị cho các textview theo món ăn được chọn
         txtTenMonAn.setText(txtTenMonAn.getText()+monAn.getTenMonAn());
         txtCongThuc.setText(txtCongThuc.getText()+monAn.getCongThuc());
@@ -91,7 +91,6 @@ public class ChiTietMonAn extends AppCompatActivity {
                 finish();
             }
         });
-
         FragmentManager fragmentManager = getSupportFragmentManager();
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         btnCapNhat.setOnClickListener(new View.OnClickListener() {

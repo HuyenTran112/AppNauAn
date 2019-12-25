@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -40,6 +41,7 @@ import java.io.InputStream;
 import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
+import static com.example.appnauan.R.drawable.avatar;
 
 public class DangKyFragment extends Fragment {
 
@@ -87,8 +89,10 @@ public class DangKyFragment extends Fragment {
                 ByteArrayOutputStream byteArray=new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.PNG,100,byteArray);
                 Bitmap emptyBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
+                Drawable myDrawable = getResources().getDrawable(avatar);
+                Bitmap bitmapfirst      = ((BitmapDrawable) myDrawable).getBitmap();
                 //Kiểm tra dữ liệu đăng ký nếu không đầy đủ thì yêu cầu nhập đầy đủ thông tin
-                if(tenhienthi.isEmpty() || email.isEmpty() || matkhau.isEmpty() || bitmap.sameAs(emptyBitmap))
+                if(tenhienthi.isEmpty() || email.isEmpty() || matkhau.isEmpty() || bitmap.sameAs(emptyBitmap) ||bitmap.sameAs(bitmapfirst))
                 {
                     Toast.makeText(getActivity(),"Vui lòng nhập đầy đủ thông tin",Toast.LENGTH_SHORT).show();
                 }

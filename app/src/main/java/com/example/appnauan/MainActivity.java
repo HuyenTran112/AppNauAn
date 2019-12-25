@@ -57,21 +57,7 @@ public class MainActivity extends AppCompatActivity {
     String User;
     String noidung="";
     public NguoiDung nguoidung=null;
-//    public String urlGetMonAn="http://10.80.255.123:8080/dbAppNauAn/getMonAn.php";
-//    public String URL_SEARCH = "http://10.80.255.123:8080/dbappnauan/search_monan.php";
-//    public String URL_LOGIN = "http://10.80.255.123:8080/dbappnauan/login.php";
-//    public String urlGetUser = "http://10.80.255.123:8080/dbAppNauAn/getUser.php";
-//    public String urlAddMonAnYeuThich="http://10.80.255.123:8080/dbappnauan/AddMonAnYeuThich.php";
-//    public String urlDeleteMonAnYeuThich="http://10.80.255.123:8080/dbappnauan/DeleteMonAnYeuThich.php";
-//    public String urlGetMonAnYeuThich="http://10.80.255.123:8080/dbappnauan/GetMonAnYeuThich.php";
-//    public String URL_INSERT_USER = "http://10.80.255.123:8080/dbappnauan/insertUser.php";
-//    public String urlGetDsMonAnYeuThich="http://10.80.255.123:8080/dbAppNauAn/LayDSMonAnYeuThich.php";
-//    public String URL_UPDATE = "http://10.80.255.123:8080/dbappnauan/update_monan.php";
-//    public String URL_UPDATE1 = "http://10.80.255.123:8080/dbappnauan/upd_monan.php";
-//    public String URL_INSERT = "http://10.80.255.123:8080/dbappnauan/insert_monan.php";
-//    public String urlGetLoaiMonAn="http://10.80.255.123:8080/dbappnauan/getLoaiMonAn.php";
-    //thay bằng địa chỉ ip máy bà để chạy nha
-public String urlGetMonAn="http://10.80.255.123:8080/dbAppNauAn/getMonAn.php";
+    public String urlGetMonAn="http://10.80.255.123:8080/dbAppNauAn/getMonAn.php";
     public String URL_SEARCH = "http://10.80.255.123:8080/dbappnauan/search_monan.php";
     public String URL_LOGIN = "http://10.80.255.123:8080/dbappnauan/login.php";
     public String urlGetUser = "http://10.80.255.123:8080/dbAppNauAn/getUser.php";
@@ -84,6 +70,27 @@ public String urlGetMonAn="http://10.80.255.123:8080/dbAppNauAn/getMonAn.php";
     public String URL_UPDATE1 = "http://10.80.255.123:8080/dbappnauan/upd_monan.php";
     public String URL_INSERT = "http://10.80.255.123:8080/dbappnauan/insert_monan.php";
     public String urlGetLoaiMonAn="http://10.80.255.123:8080/dbappnauan/getLoaiMonAn.php";
+    public String urlGetMonXao="http://10.80.255.123:8080/dbAppNauAn/getMonXao.php";
+    public String urlGetMonCanh="http://10.80.255.123:8080/dbAppNauAn/getMonCanh.php";
+    public String urlGetMonKho="http://10.80.255.123:8080/dbAppNauAn/getMonKho.php";
+    public String urlGetMonLau="http://10.80.255.123:8080/dbAppNauAn/getMonLau.php";
+    public String urlGetMonNuong="http://10.80.255.123:8080/dbAppNauAn/getMonNuong.php";
+    public String urlGetMonBanh="http://10.80.255.123:8080/dbAppNauAn/getMonBanh.php";
+    public String urlGetMonKhac="http://10.80.255.123:8080/dbAppNauAn/getMonBanh.php";
+    //thay bằng địa chỉ ip máy bà để chạy nha
+//public String urlGetMonAn="http://10.80.255.123:8080/dbAppNauAn/getMonAn.php";
+//    public String URL_SEARCH = "http://10.80.255.123:8080/dbappnauan/search_monan.php";
+//    public String URL_LOGIN = "http://10.80.255.123:8080/dbappnauan/login.php";
+//    public String urlGetUser = "http://10.80.255.123:8080/dbAppNauAn/getUser.php";
+//    public String urlAddMonAnYeuThich="http://10.80.255.123:8080/dbappnauan/AddMonAnYeuThich.php";
+//    public String urlDeleteMonAnYeuThich="http://10.80.255.123:8080/dbappnauan/DeleteMonAnYeuThich.php";
+//    public String urlGetMonAnYeuThich="http://10.80.255.123:8080/dbappnauan/GetMonAnYeuThich.php";
+//    public String URL_INSERT_USER = "http://10.80.255.123:8080/dbappnauan/insertUser.php";
+//    public String urlGetDsMonAnYeuThich="http://10.80.255.123:8080/dbAppNauAn/LayDSMonAnYeuThich.php";
+//    public String URL_UPDATE = "http://10.80.255.123:8080/dbappnauan/update_monan.php";
+//    public String URL_UPDATE1 = "http://10.80.255.123:8080/dbappnauan/upd_monan.php";
+//    public String URL_INSERT = "http://10.80.255.123:8080/dbappnauan/insert_monan.php";
+//    public String urlGetLoaiMonAn="http://10.80.255.123:8080/dbappnauan/getLoaiMonAn.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -179,4 +186,5 @@ public String urlGetMonAn="http://10.80.255.123:8080/dbAppNauAn/getMonAn.php";
         nav_itemmonanyeuthich.setEnabled(enable);
 
     }
+
 }

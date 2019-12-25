@@ -3,6 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
+    <item android:title="Danh sách loại món ăn">
+        <menu>
+            <item
+                android:id="@+id/nav_dsloaimoan"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Loại món ăn" />
+        </menu>
+    </item>
     <group android:checkableBehavior="single">
         <item
             android:icon="@drawable/ic_menu_camera"
@@ -13,14 +21,6 @@
                     android:icon="@drawable/ic_menu_camera"
                     android:title="@string/menu_dsmonan"
                     />
-<!--                <item-->
-<!--                    android:id="@+id/nav_monxao"-->
-<!--                    android:icon="@drawable/ic_menu_share"-->
-<!--                    android:title="Món xào" />-->
-<!--                <item-->
-<!--                    android:id="@+id/nav_moncanh"-->
-<!--                    android:icon="@drawable/ic_menu_send"-->
-<!--                    android:title="Món canh" />-->
             </menu>
         </item>
         <item
@@ -36,7 +36,6 @@
             android:icon="@drawable/ic_menu_manage"
             android:title="@string/menu_dangnhap" />
     </group>
-
     <item android:title="Communicate">
         <menu>
             <item

@@ -11,6 +11,6 @@
         android:layout_marginLeft="8dp"
         android:text="TextView"
         android:textSize="18sp"
-        android:textColor="#0F0F0F"/>
+        android:textColor="#000000"/>
 
 </RelativeLayout>

@@ -28,7 +28,7 @@
             android:marqueeRepeatLimit="marquee_forever"
             android:scrollHorizontally="true"
             android:singleLine="true"
-            android:textColor="#000000"
+            android:textColor="#0048FF"
             android:textSize="16dp"
             android:textStyle="bold"
             android:layout_marginBottom="20dp"

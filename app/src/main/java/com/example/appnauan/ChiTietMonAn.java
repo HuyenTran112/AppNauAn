@@ -46,12 +46,9 @@ public class ChiTietMonAn extends AppCompatActivity {
     ArrayList<LoaiMonAn> arrayListLoaiMonAn;
 
     //String urlGetLoaiMonAn="http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/getLoaiMonAn.php";
-    /*String urlGetLoaiMonAn="http://10.80.255.123:8080/dbappnauan/getLoaiMonAn.php";
+    String urlGetLoaiMonAn="http://10.80.255.123:8080/dbappnauan/getLoaiMonAn.php";
     String urlDelete="http://10.80.255.123:8080/dbappnauan/deleteMonAn.php";
-    String urlgetData="http://10.80.255.123:8080/dbappnauan/getMonAn.php";*/
-    String urlGetLoaiMonAn="http://192.168.1.105/dbappnauan/getLoaiMonAn.php";
-    String urlDelete="http://192.168.1.105/dbappnauan/deleteMonAn.php";
-    String urlgetData="http://192.168.1.105/dbappnauan/getMonAn.php";
+    String urlgetData="http://10.80.255.123:8080/dbappnauan/getMonAn.php";
 
     String TenLoaiMonAn;
     MonAn monAn;

@@ -1,6 +1,7 @@
 package com.example.appnauan.ui.quanly;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -92,6 +93,7 @@ public class QuanLyFragment extends Fragment {
     LoaiMonAnAdapter loaiMonAnAdapter;
     MonAnAdapter monAnAdapter;
     String maloaimonan, urlImage = "";
+    private Context context;
 
     public View getView()
     {
@@ -317,15 +319,25 @@ public class QuanLyFragment extends Fragment {
             String uploadId = UUID.randomUUID().toString();
             if (path.equals("http")) {
                 RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, MainActivity.instance.URL_UPDATE1, new Response.Listener<String>() {
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, MainActivity.instance.URL_UPDATE, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         if(response.trim().equals("success")) {
                             Toast.makeText(getActivity(), "Cập nhật món ăn thành công", Toast.LENGTH_SHORT).show();
-//                            edtCongThuc.setText("");
-//                            edtDSNguyenLieu.setText("");
-//                            edtTenMonAn.setText("");
-//                            imgHinhAnh.setImageResource(R.drawable.noimage);
+                            edtCongThuc.setText("");
+                            edtDSNguyenLieu.setText("");
+                            edtTenMonAn.setText("");
+                            imgHinhAnh.setImageResource(R.drawable.noimage);
+//
+//                            Intent intent=new Intent(context,MainActivity.class);
+//                            context.startActivity(intent);
+                            monAnAdapter.notifyDataSetChanged();
+//
+//                            DsMonAnFragment dsMonAnFragment = new DsMonAnFragment();
+//                            FragmentManager fm = getFragmentManager();
+//                            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+//                            fragmentTransaction.add(R.id.activityCTMonAn, dsMonAnFragment);
+//                            fragmentTransaction.commit();
                         }
                         else
                             Toast.makeText(getActivity(),"Lỗi cập nhật! http",Toast.LENGTH_SHORT).show();
@@ -374,9 +386,13 @@ public class QuanLyFragment extends Fragment {
                     edtTenMonAn.setText("");
                     imgHinhAnh.setImageResource(R.drawable.noimage);
                     Toast.makeText(getActivity(),"Cập nhật món ăn thành công",Toast.LENGTH_SHORT).show();
+                    edtCongThuc.setText("");
+                    edtDSNguyenLieu.setText("");
+                    edtTenMonAn.setText("");
+                    imgHinhAnh.setImageResource(R.drawable.noimage);
 
-//                    monAnAdapter.notifyDataSetChanged();
-
+                    monAnAdapter.notifyDataSetChanged();
+//
 //                    DsMonAnFragment dsMonAnFragment = new DsMonAnFragment();
 //                    FragmentManager fm = getFragmentManager();
 //                    FragmentTransaction fragmentTransaction = fm.beginTransaction();

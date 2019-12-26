@@ -125,10 +125,8 @@ public class DangNhapFragment extends Fragment {
                         .setPositiveButton("Có", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 MainActivity.instance.nguoidung = null;
-
                                 String imageUri = "android.resource://com.example.appnauan/drawable/icon_cook";
                                 MainActivity.instance.setInformationUser("",imageUri);
-
                                 DangNhapFragment nextFrag = new DangNhapFragment();
                                 getActivity().getSupportFragmentManager().beginTransaction()
                                         .replace(R.id.nav_host_fragment, nextFrag, "findThisFragment")
@@ -146,6 +144,7 @@ public class DangNhapFragment extends Fragment {
                             }
                         })
                         .show();
+                MainActivity.instance.SetEnableMenuItem(false);
             }
         });
 
@@ -169,6 +168,8 @@ public class DangNhapFragment extends Fragment {
             btnLogin.setVisibility(View.GONE);
             btnLogout.setVisibility(View.VISIBLE);
             imgUser.setVisibility(View.VISIBLE);
+            Uri imgUri=Uri.parse(MainActivity.instance.nguoidung.getHinhAnh());
+            Picasso.with(getActivity()).load(imgUri).into(imgUser);
         }
 
         return root;
@@ -200,6 +201,7 @@ public class DangNhapFragment extends Fragment {
                     //Toast.makeText(getActivity(),userCurrent.getTenHienThi().toString(),Toast.LENGTH_SHORT).show();
                     edtEmail.setText("");
                     edtMatKhau.setText("");
+                   ;
                     //khi đăng nhập thành công thì xuất thông báo sau đó chuyển sang fragment danh sách món ăn
                     DsMonAnFragment nextFrag = new DsMonAnFragment();
                     getActivity().getSupportFragmentManager().beginTransaction()

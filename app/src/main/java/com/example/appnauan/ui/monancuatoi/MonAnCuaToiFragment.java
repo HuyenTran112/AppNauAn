@@ -70,7 +70,7 @@ public class MonAnCuaToiFragment extends Fragment {
                         monAn.setCongThuc(object.getString("congthuc"));
                         monAn.setHinhAnh(object.getString("hinhanh"));
                         monAn.setMaNguoiDung(object.getInt("manguoidung"));
-                        monAn.setMaLoaiMonAn(object.getInt("manguoidung"));
+                        monAn.setMaLoaiMonAn(object.getInt("maloaimonan"));
                         arrayListMonAn.add(monAn);
                         //kiểm tra món ăn có phải của người dùng hiện tại không nếu phải thì add vào ds món ăn của tôi
                         if(MainActivity.instance.nguoidung!=null){

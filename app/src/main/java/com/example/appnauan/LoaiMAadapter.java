@@ -73,13 +73,13 @@ public class LoaiMAadapter extends BaseAdapter {
         holder.txtTenLoaiMonAn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context,"Bạn vừa chọn loại món ăn: "+loaiMonAn.getMaLoaiMonAn(),Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context,"Bạn vừa chọn loại món ăn: "+loaiMonAn.getMaLoaiMonAn(),Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(context,LoaiMonAnActivity.class);
                 intent.putExtra("dataLoaiMonAn", loaiMonAn);
                 context.startActivity(intent);
             }
         });
-        holder.imgHinhAnhLoaiMonAn.setImageResource(R.drawable.monbanh);
+        holder.imgHinhAnhLoaiMonAn.setImageResource(loaiMonAn.getHinhAnh());
         return view;
     }
 }

@@ -39,7 +39,7 @@ public class LoaiMonAnActivity extends AppCompatActivity {
         arrayListMonAn=new ArrayList<>();
         //lấy dữ liệu được gửi qua từ intent
         loaiMonAn= (LoaiMonAn) intent.getSerializableExtra("dataLoaiMonAn");
-        Toast.makeText(this,loaiMonAn.getTenLoaiMonAn(),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this,loaiMonAn.getTenLoaiMonAn(),Toast.LENGTH_SHORT).show();
        adapter=new MonAnAdapter(LoaiMonAnActivity.this,R.layout.item_monan,arrayListMonAn);
        GetMonAn(MainActivity.instance.urlGetMonAn);
         gvLoaiMonAn=(GridView)findViewById(R.id.gridviewHinhAnhMonAnLT);

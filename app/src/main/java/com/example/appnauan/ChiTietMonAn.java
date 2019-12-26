@@ -45,12 +45,8 @@ public class ChiTietMonAn extends AppCompatActivity {
     TextView txtTenMonAn, txtCongThuc, txtDsNguyenLieu, txtLoaiMonAn;
     ImageView imgHinh;
     ArrayList<LoaiMonAn> arrayListLoaiMonAn;
-
-    //String urlGetLoaiMonAn="http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/getLoaiMonAn.php";
-    //String urlGetLoaiMonAn="http://10.80.255.123:8080/dbappnauan/getLoaiMonAn.php";
-    String urlDelete="http://172.17.25.153:8080/AppNauAn/Database//dbappnauan/deleteMonAn.php";
-    String urlgetData="http://172.17.25.153:8080/AppNauAn/Database/dbappnauan/getMonAn.php";
-
+    String urlDelete="http://appnauan.000webhostapp.com/deleteMonAn.php";
+    String urlgetData="http://appnauan.000webhostapp.com/getMonAn.php";
     String TenLoaiMonAn;
     MonAn monAn;
     Button btnThoat, btnCapNhat,btnXoa;

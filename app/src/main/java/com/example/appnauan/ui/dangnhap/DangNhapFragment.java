@@ -132,6 +132,7 @@ public class DangNhapFragment extends Fragment {
                                         .replace(R.id.nav_host_fragment, nextFrag, "findThisFragment")
                                         .addToBackStack(null)
                                         .commit();
+                                MainActivity.instance.SetEnableMenuItem(false);
                             }
                         })
                         .setNegativeButton("Không", new DialogInterface.OnClickListener() {
@@ -144,7 +145,7 @@ public class DangNhapFragment extends Fragment {
                             }
                         })
                         .show();
-                MainActivity.instance.SetEnableMenuItem(false);
+
             }
         });
 

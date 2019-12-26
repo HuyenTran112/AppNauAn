@@ -57,26 +57,25 @@ public class MainActivity extends AppCompatActivity {
     String User;
     String noidung="";
     public NguoiDung nguoidung=null;
-    public String urlGetMonAn="http://10.80.255.123:8080/dbAppNauAn/getMonAn.php";
-    public String URL_SEARCH = "http://10.80.255.123:8080/dbappnauan/search_monan.php";
-    public String URL_LOGIN = "http://10.80.255.123:8080/dbappnauan/login.php";
-    public String urlGetUser = "http://10.80.255.123:8080/dbAppNauAn/getUser.php";
-    public String urlAddMonAnYeuThich="http://10.80.255.123:8080/dbappnauan/AddMonAnYeuThich.php";
-    public String urlDeleteMonAnYeuThich="http://10.80.255.123:8080/dbappnauan/DeleteMonAnYeuThich.php";
-    public String urlGetMonAnYeuThich="http://10.80.255.123:8080/dbappnauan/GetMonAnYeuThich.php";
-    public String URL_INSERT_USER = "http://10.80.255.123:8080/dbappnauan/insertUser.php";
-    public String urlGetDsMonAnYeuThich="http://10.80.255.123:8080/dbAppNauAn/LayDSMonAnYeuThich.php";
-    public String URL_UPDATE = "http://10.80.255.123:8080/dbappnauan/update_monan.php";
-    public String URL_UPDATE1 = "http://10.80.255.123:8080/dbappnauan/upd_monan.php";
-    public String URL_INSERT = "http://10.80.255.123:8080/dbappnauan/insert_monan.php";
-    public String urlGetLoaiMonAn="http://10.80.255.123:8080/dbappnauan/getLoaiMonAn.php";
-    public String urlGetMonXao="http://10.80.255.123:8080/dbAppNauAn/getMonXao.php";
-    public String urlGetMonCanh="http://10.80.255.123:8080/dbAppNauAn/getMonCanh.php";
-    public String urlGetMonKho="http://10.80.255.123:8080/dbAppNauAn/getMonKho.php";
-    public String urlGetMonLau="http://10.80.255.123:8080/dbAppNauAn/getMonLau.php";
-    public String urlGetMonNuong="http://10.80.255.123:8080/dbAppNauAn/getMonNuong.php";
-    public String urlGetMonBanh="http://10.80.255.123:8080/dbAppNauAn/getMonBanh.php";
-    public String urlGetMonKhac="http://10.80.255.123:8080/dbAppNauAn/getMonBanh.php";
+    public String urlGetMonAn="http://172.17.25.153:8080/AppNauAn/Database/dbappnauan/getMonAn.php";
+    public String URL_SEARCH = "http://172.17.25.153:8080/AppNauAn/Database/dbappnauan/search_monan.php";
+    public String URL_LOGIN = "http://172.17.25.153:8080/AppNauAn/Database/dbappnauan/login.php";
+    public String urlGetUser = "http://172.17.25.153:8080/AppNauAn/Database/dbappnauan/getUser.php";
+    public String urlAddMonAnYeuThich="http://172.17.25.153:8080/AppNauAn/Database/dbappnauan/AddMonAnYeuThich.php";
+    public String urlDeleteMonAnYeuThich="http://172.17.25.153:8080/AppNauAn/Database/dbappnauan/DeleteMonAnYeuThich.php";
+    public String urlGetMonAnYeuThich="http://172.17.25.153:8080/AppNauAn/Database/dbappnauan/GetMonAnYeuThich.php";
+    public String URL_INSERT_USER = "http://172.17.25.153:8080/AppNauAn/Database/dbappnauan/insertUser.php";
+    public String urlGetDsMonAnYeuThich="http://172.17.25.153:8080/AppNauAn/Database/dbappnauan/LayDSMonAnYeuThich.php";
+    public String URL_UPDATE = "http://172.17.25.153:8080/AppNauAn/Database/dbappnauan/update_monan.php";
+    public String URL_INSERT = "http://172.17.25.153:8080/AppNauAn/Database/dbappnauan/insert_monan.php";
+    public String urlGetLoaiMonAn="http://172.17.25.153:8080/AppNauAn/Database/dbappnauan/getLoaiMonAn.php";
+    public String urlGetMonXao="http://172.17.25.153:8080/AppNauAn/Database/dbappnauan/getMonXao.php";
+    public String urlGetMonCanh="http://172.17.25.153:8080/AppNauAn/Database/dbappnauan/getMonCanh.php";
+    public String urlGetMonKho="http://172.17.25.153:8080/AppNauAn/Database/dbappnauan/getMonKho.php";
+    public String urlGetMonLau="http://172.17.25.153:8080/AppNauAn/Database/dbappnauan/getMonLau.php";
+    public String urlGetMonNuong="http://172.17.25.153:8080/AppNauAn/Database/dbappnauan/getMonNuong.php";
+    public String urlGetMonBanh="http://172.17.25.153:8080/AppNauAn/Database/dbappnauan/getMonBanh.php";
+    public String urlGetMonKhac="http://172.17.25.153:8080/AppNauAn/Database/dbappnauan/getMonBanh.php";
     //thay bằng địa chỉ ip máy bà để chạy nha
 //public String urlGetMonAn="http://10.80.255.123:8080/dbAppNauAn/getMonAn.php";
 //    public String URL_SEARCH = "http://10.80.255.123:8080/dbappnauan/search_monan.php";
@@ -88,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
 //    public String URL_INSERT_USER = "http://10.80.255.123:8080/dbappnauan/insertUser.php";
 //    public String urlGetDsMonAnYeuThich="http://10.80.255.123:8080/dbAppNauAn/LayDSMonAnYeuThich.php";
 //    public String URL_UPDATE = "http://10.80.255.123:8080/dbappnauan/update_monan.php";
-//    public String URL_UPDATE1 = "http://10.80.255.123:8080/dbappnauan/upd_monan.php";
 //    public String URL_INSERT = "http://10.80.255.123:8080/dbappnauan/insert_monan.php";
 //    public String urlGetLoaiMonAn="http://10.80.255.123:8080/dbappnauan/getLoaiMonAn.php";
     @Override
@@ -164,9 +162,11 @@ public class MainActivity extends AppCompatActivity {
         View headerView = navigationView.getHeaderView(0);
         TextView navUsername = (TextView) headerView.findViewById(R.id.textViewAdmin);
         ImageView navImageUser=(ImageView) headerView.findViewById(R.id.imageViewUser);
+        ImageView imgDangXuat = (ImageView) findViewById(R.id.imgViewHinhUser);
         navUsername.setText(tenhienthi);
         Uri imgUri=Uri.parse(hinhanh);
         Picasso.with(this).load(imgUri).into(navImageUser);
+        Picasso.with(this).load(imgUri).into(imgDangXuat);
     }
     public boolean KiemTraDangNhap(){
         if(MainActivity.instance.nguoidung!=null){

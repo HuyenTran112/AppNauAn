@@ -10,12 +10,12 @@
     <string name="menu_dsmonan">Danh sách món ăn</string>
     <string name="menu_monanyeuthich">Món ăn yêu thích</string>
     <string name="menu_monancuatoi">Món ăn của tôi</string>
-    <string name="menu_dangnhap">Đăng nhập</string>
+    <string name="menu_dangnhap">Tài khoản</string>
     <string name="menu_exit">Exit</string>
     <string name="menu_quanly">Quản lý</string>
-    <string name="signup">Sign up</string>
+    <string name="signup">Đăng ký</string>
     <string name="image">Hình ảnh</string>
-    <string name="password">Password</string>
-    <string name="username">Username</string>
+    <string name="password">Mật khẩu</string>
+    <string name="username">Tên đăng nhập</string>
 
 </resources>

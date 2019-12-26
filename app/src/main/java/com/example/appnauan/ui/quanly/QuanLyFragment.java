@@ -208,7 +208,7 @@ public class QuanLyFragment extends Fragment {
             GetLoaiMonAn(MainActivity.instance.urlGetLoaiMonAn, bundle.getInt("maloaimonan"));
             Picasso.with(getActivity()).load(bundle.getString("hinhanh")).into(imgHinhAnh);
 
-            if ((tvTieude.getText()).equals("Cập nhật món ăn")) {
+            if ((tvTieude.getText()).equals("CẬP NHẬT MÓN ĂN")) {
                 btnCapNhat.setVisibility(View.VISIBLE);
                 btnThem.setVisibility(View.GONE);
             }
@@ -318,15 +318,15 @@ public class QuanLyFragment extends Fragment {
             String uploadId = UUID.randomUUID().toString();
             if (path.equals("http")) {
                 RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, MainActivity.instance.URL_UPDATE1, new Response.Listener<String>() {
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, MainActivity.instance.URL_UPDATE, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         if(response.trim().equals("success")) {
                             Toast.makeText(getActivity(), "Cập nhật món ăn thành công", Toast.LENGTH_SHORT).show();
-//                            edtCongThuc.setText("");
-//                            edtDSNguyenLieu.setText("");
-//                            edtTenMonAn.setText("");
-//                            imgHinhAnh.setImageResource(R.drawable.noimage);
+                            edtCongThuc.setText("");
+                            edtDSNguyenLieu.setText("");
+                            edtTenMonAn.setText("");
+                            imgHinhAnh.setImageResource(R.drawable.noimage);
                         }
                         else
                             Toast.makeText(getActivity(),"Lỗi cập nhật! http",Toast.LENGTH_SHORT).show();

@@ -26,7 +26,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         }
         else{
             $upload_path = 'imagemonan/'; //this is our upload folder
-            $server_ip = "172.17.20.139:8080/"; //Getting the server ip
+            $server_ip = "172.17.25.153:8080/"; //Getting the server ip
             $upload_url = 'http://'.$server_ip.'AppNauAn/Database/dbappnauan/'.$upload_path;
             //response array
             $response = array();

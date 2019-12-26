@@ -30,14 +30,16 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Bạn cần tìm gì?"
-            android:layout_weight="4"
+            android:hint="Bạn cần tìm món ăn gì?"
+            android:layout_weight="3"
             android:layout_marginRight="10dp"
             android:id="@+id/etkeySearch"
             android:inputType="textPersonName"/>
+
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:background="@drawable/custom_button"
             android:src="@android:drawable/ic_menu_search"
             android:layout_weight="1"
             android:id="@+id/ImbtnSearch"/>

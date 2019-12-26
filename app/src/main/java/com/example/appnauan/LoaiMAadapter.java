@@ -79,7 +79,7 @@ public class LoaiMAadapter extends BaseAdapter {
                 context.startActivity(intent);
             }
         });
-       // holder.imgHinhAnhLoaiMonAn.setImageResource(R.drawable.monbanh);
+        holder.imgHinhAnhLoaiMonAn.setImageResource(R.drawable.monbanh);
         return view;
     }
 }

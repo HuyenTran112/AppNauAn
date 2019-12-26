@@ -1,16 +1,26 @@
 package com.example.appnauan.ui.dangnhap;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -37,6 +47,8 @@ import com.example.appnauan.ui.dangky.DangKyFragment;
 import com.example.appnauan.ui.dangky.DangKyViewModel;
 import com.example.appnauan.ui.dsmonan.DsMonAnFragment;
 import com.example.appnauan.ui.quanly.QuanLyFragment;
+import com.google.android.material.navigation.NavigationView;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,14 +68,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class DangNhapFragment extends Fragment {
 
     private DangNhapViewModel dangnhapViewModel;
     private DangKyViewModel dangKyViewModel;
     private DangKyFragment dangKyFragment;
-    Button btnSignUp, btnLogin;
+    Button btnSignUp, btnLogin, btnLogout;
     public View view;
     EditText edtEmail, edtMatKhau;
+    TextView tvTitle, tvUser, tvPass;
+    ImageView imgUser;
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
     ArrayList<NguoiDung> arrayListNguoiDung=new ArrayList<>();
@@ -100,15 +116,75 @@ public class DangNhapFragment extends Fragment {
                 //Toast.makeText(getActivity(),Email+" "+MatKhau,Toast.LENGTH_SHORT).show();
             }
         });
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("Đăng xuất")
+                        .setMessage("Bạn có chắc chắn muốn đăng xuất?")
+                        .setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                MainActivity.instance.nguoidung = null;
+
+                                String imageUri = "android.resource://com.example.appnauan/drawable/icon_cook";
+                                MainActivity.instance.setInformationUser("",imageUri);
+
+                                DangNhapFragment nextFrag = new DangNhapFragment();
+                                getActivity().getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.nav_host_fragment, nextFrag, "findThisFragment")
+                                        .addToBackStack(null)
+                                        .commit();
+                            }
+                        })
+                        .setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                DsMonAnFragment nextFrag = new DsMonAnFragment();
+                                getActivity().getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.nav_host_fragment, nextFrag, "findThisFragment")
+                                        .addToBackStack(null)
+                                        .commit();
+                            }
+                        })
+                        .show();
+            }
+        });
+
+        if(KiemTraDangNhap()==false)
+        {
+            tvTitle.setVisibility(View.VISIBLE);
+            tvUser.setVisibility(View.VISIBLE);
+            tvPass.setVisibility(View.VISIBLE);
+            edtEmail.setVisibility(View.VISIBLE);
+            edtMatKhau.setVisibility(View.VISIBLE);
+            btnLogin.setVisibility(View.VISIBLE);
+            btnLogout.setVisibility(View.GONE);
+            imgUser.setVisibility(View.GONE);
+        }
+        else{
+            tvTitle.setVisibility(View.GONE);
+            tvUser.setVisibility(View.GONE);
+            tvPass.setVisibility(View.GONE);
+            edtEmail.setVisibility(View.GONE);
+            edtMatKhau.setVisibility(View.GONE);
+            btnLogin.setVisibility(View.GONE);
+            btnLogout.setVisibility(View.VISIBLE);
+            imgUser.setVisibility(View.VISIBLE);
+        }
+
         return root;
 
     }
+
     private void AnhXa() {
         btnSignUp = (Button) view.findViewById(R.id.btn_sign_up);
         btnLogin = (Button) view.findViewById(R.id.buttonSingIn);
+        btnLogout = (Button) view.findViewById(R.id.buttonLogout);
         edtEmail = (EditText) view.findViewById(R.id.et_email);
         edtMatKhau = (EditText) view.findViewById(R.id.et_password);
-
+        tvTitle = (TextView) view.findViewById(R.id.tvSignup);
+        tvUser = (TextView) view.findViewById(R.id.tv_username);
+        tvPass = (TextView) view.findViewById(R.id.tv_password);
+        imgUser = (ImageView) view.findViewById(R.id.imgViewHinhUser);
     }
 
     //Kiem tra login
@@ -207,6 +283,12 @@ public class DangNhapFragment extends Fragment {
         }
         //Toast.makeText(getActivity(),userCurrent.getTenHienThi().toString(),Toast.LENGTH_SHORT).show();
         MainActivity.instance.setInformationUser(MainActivity.instance.nguoidung.getTenHienThi(),userCurrent.getHinhAnh());
+    }
 
+    public boolean KiemTraDangNhap(){
+        if(MainActivity.instance.nguoidung!=null){
+            return true;
+        }
+        return false;
     }
 }

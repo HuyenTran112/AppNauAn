@@ -10,6 +10,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -47,8 +48,8 @@ public class ChiTietMonAn extends AppCompatActivity {
 
     //String urlGetLoaiMonAn="http://172.17.28.47:8080/AppNauAn/Database/dbappnauan/getLoaiMonAn.php";
     //String urlGetLoaiMonAn="http://10.80.255.123:8080/dbappnauan/getLoaiMonAn.php";
-    String urlDelete="http://10.80.255.123:8080/dbappnauan/deleteMonAn.php";
-    String urlgetData="http://10.80.255.123:8080/dbappnauan/getMonAn.php";
+    String urlDelete="http://172.17.25.153:8080/AppNauAn/Database//dbappnauan/deleteMonAn.php";
+    String urlgetData="http://172.17.25.153:8080/AppNauAn/Database/dbappnauan/getMonAn.php";
 
     String TenLoaiMonAn;
     MonAn monAn;
@@ -98,7 +99,7 @@ public class ChiTietMonAn extends AppCompatActivity {
             public void onClick(View v) {
                 QuanLyFragment quanLyFragment = new QuanLyFragment();
                 Bundle bundle = new Bundle();
-                bundle.putString("tieude", "Cập nhật món ăn");
+                bundle.putString("tieude", "CẬP NHẬT MÓN ĂN");
                 bundle.putInt("mamonan", monAn.getMaMonAn());
                 bundle.putString("tenmonan", monAn.getTenMonAn());
                 bundle.putString("nguyenlieu", monAn.getDSNguyenLieu());
@@ -191,6 +192,7 @@ public class ChiTietMonAn extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 DeleteMonAn(id);
+//                Toast.makeText(ChiTietMonAn.this, "id: " + id ,Toast.LENGTH_SHORT).show();
             }
         });
         dialogXoa.setNegativeButton("Không", new DialogInterface.OnClickListener() {
